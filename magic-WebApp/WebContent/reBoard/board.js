@@ -1,0 +1,23 @@
+function check_ok(){
+	
+	if(document.bd_frm.name.value.length == 0){
+		alert("이름을 입력하세요.");
+		bd_frm.name.focus();
+		return;
+	}
+	else if(document.bd_frm.email.value.length == 0){
+		alert("메일을 입력하세요.");
+		bd_frm.mem_uid.focus();
+		return;	
+	}
+	else if(document.bd_frm.title.value.length == 0){
+		alert("제목을 입력하세요.");
+		bd_frm.title.focus();
+		return;
+	}
+	else if(document.bd_frm.content.value.length == 0){
+		alert("내용을 입력하세요.");
+		bd_frm.content.focus();
+	}
+	document.bd_frm.submit();
+}
