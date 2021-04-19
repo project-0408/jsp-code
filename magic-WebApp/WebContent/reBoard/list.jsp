@@ -21,19 +21,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<h1>°Ô½ÃÆÇ¿¡ µî·ÏµÈ ±Û ¸ñ·Ï º¸±â</h1>
+		<h1>ê²Œì‹œíŒì— ë“±ë¡ëœ ê¸€ ëª©ë¡ ë³´ê¸°</h1>
 <form>
 <table>
 	<tr>
-		<td><a href = "write.jsp">±Û ¾² ±â</a></td>
+		<td><a href = "write.jsp">ê¸€ ì“° ê¸°</a></td>
 	</tr>
 </table>
 <table border = "1" cellspacing="0">
 	<tr>
-		<td>¹øÈ£</td>
-		<td width = "500px" align = "center">±ÛÁ¦¸ñ</td>
-		<td>ÀÛ¼ºÀÏÀÚ</td>
-		<td>ÀÛ¼ºÀÚ</td>
+		<td>ë²ˆí˜¸!</td>
+		<td width = "500px" align = "center">ê¸€ì œëª©</td>
+		<td>ìž‘ì„±ì¼ìž</td>
+		<td>ìž‘ì„±ìž</td>
 	</tr>
 	<%
 	for(i=0;i<boardList.size();i++){
