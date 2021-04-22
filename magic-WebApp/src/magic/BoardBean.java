@@ -16,6 +16,21 @@ public class BoardBean {
 	private String content;
 	private int number;
 	private Timestamp date = Timestamp.valueOf(today);
+	private int b_hit;
+	private String b_pwd;
+	
+	public String getB_pwd() {
+		return b_pwd;
+	}
+	public void setB_pwd(String b_pwd) {
+		this.b_pwd = b_pwd;
+	}
+	public int getB_hit() {
+		return b_hit;
+	}
+	public void setB_hit(int b_hit) {
+		this.b_hit = b_hit;
+	}
 	
 	public Timestamp getDate() {
 		return date;

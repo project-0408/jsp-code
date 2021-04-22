@@ -34,6 +34,7 @@
 		<td width = "500px" align = "center">글제목</td>
 		<td>작성일자</td>
 		<td>작성자</td>
+		<td>조회수</td>
 	</tr>
 	<%
 	for(i=0;i<boardList.size();i++){
@@ -42,6 +43,7 @@
 		name = board.getName();
 		title = board.getTitle();
 		date = board.getDate();
+		int a = board.getB_hit();
 		
 		%>
 		<tr bgcolor = "#f7f7f7" onmouseover = "this.style.backgroundColor='#eeeeef'" onmouseout="this.style.backgroundColor='#f7f7f7'">
@@ -49,6 +51,7 @@
 		<td><a href ="show.jsp?number=<%=number%>"><%=title%></a></td>
 		<td><%=date%></td>
 		<td><%=name%></td>
+		<td><%=a%></td>
 		</tr>
 		<%
 	}
