@@ -7,6 +7,7 @@
     <%
     BoardDBBean db = BoardDBBean.getInstance();
     ArrayList<BoardBean> boardList = db.listBoard();
+    int b_hit,b_level;
     int i,number;
     String name;
 	String email;
@@ -44,11 +45,26 @@
 		title = board.getTitle();
 		date = board.getDate();
 		int a = board.getB_hit();
+		b_level = board.getB_level();
 		
 		%>
 		<tr bgcolor = "#f7f7f7" onmouseover = "this.style.backgroundColor='#eeeeef'" onmouseout="this.style.backgroundColor='#f7f7f7'">
 		<td><%=number%></td>
-		<td><a href ="show.jsp?number=<%=number%>"><%=title%></a></td>
+		<td>
+		<%
+			if(b_level > 0){
+				for(int j = 0 ;j<b_level;j++){
+					%>
+						&nbsp;
+					<%
+				}
+				%>
+				<img src = "../img/AnswerLine.gif">
+				<%
+			}
+		%>
+		<a href ="show.jsp?number=<%=number%>"><%=title%></a>
+		</td>
 		<td><%=date%></td>
 		<td><%=name%></td>
 		<td><%=a%></td>

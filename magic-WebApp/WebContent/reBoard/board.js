@@ -28,9 +28,10 @@ function check_ok(){
 }
 
 function delete_ok(){
-	
-	if(document.show.b_pwd.value != document.bd_frm.b_pwd.value){
-		alert("암호가 틀립니다.");
-		show.b_pwd.focus();
+	if(document.form.b_pwd.value.length == 0){
+		alert("비밀번호를 입력하세요.");
+		form.b_pwd.focus();
+		return;
 	}
+	document.form.submit();
 }

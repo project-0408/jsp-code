@@ -30,7 +30,12 @@ private static BoardDBBean instance = new BoardDBBean();
 		PreparedStatement pstmt = null;
 		String sql = "";
 		ResultSet rs=null;
-	
+			
+		int id = board.getNumber();
+		int ref = board.getB_ref();
+		int step = board.getB_step();
+		int level = board.getB_level();
+		
 		int number;
 		int re = -1;
 		
@@ -47,7 +52,18 @@ private static BoardDBBean instance = new BoardDBBean();
 				number=1;
 			}
 			
-			sql = "insert into boardT values(?,?,?,?,?,?,?,?)";
+			if(id!=0) {
+				sql="update boardT set b_step = b_step + 1 where b_ref=? and b_step > ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, ref);
+				pstmt.setInt(2, step);
+				pstmt.executeUpdate();
+				
+				step = step+1;
+				level = level+1;
+			}
+			
+			sql = "insert into boardT values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1,number);
@@ -58,6 +74,10 @@ private static BoardDBBean instance = new BoardDBBean();
 			pstmt.setTimestamp(6,board.getDate());
 			pstmt.setInt(7,board.getB_hit());
 			pstmt.setString(8,board.getB_pwd());
+			pstmt.setString(9,board.getB_ip());
+			pstmt.setInt(10,ref);
+			pstmt.setInt(11,step);
+			pstmt.setInt(12,level);
 			pstmt.executeUpdate();
 			
 			re = 1 ;
@@ -80,7 +100,7 @@ private static BoardDBBean instance = new BoardDBBean();
 		try {
 			con = getConnection();
 			stmt = con.createStatement();
-			String sql = "select * from boardT order by b_number";
+			String sql = "select * from boardT order by b_ref desc,b_step asc";
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -94,6 +114,10 @@ private static BoardDBBean instance = new BoardDBBean();
 				board.setDate(rs.getTimestamp(6));
 				board.setB_hit(rs.getInt(7));
 				board.setB_pwd(rs.getString(8));
+				board.setB_ip(rs.getString(9));
+				board.setB_ref(rs.getInt(10));
+				board.setB_step(rs.getInt(11));
+				board.setB_level(rs.getInt(12));
 				
 				boardList.add(board);
 			}
@@ -136,6 +160,10 @@ private static BoardDBBean instance = new BoardDBBean();
 				board.setDate(rs.getTimestamp(6));
 				board.setB_hit(rs.getInt(7));
 				board.setB_pwd(rs.getString(8));
+				board.setB_ip(rs.getString(9));
+				board.setB_ref(rs.getInt(10));
+				board.setB_step(rs.getInt(11));
+				board.setB_level(rs.getInt(12));
 			}
 			
 		}catch(Exception e){
@@ -143,39 +171,88 @@ private static BoardDBBean instance = new BoardDBBean();
 		}
 		return board ;
 	}
-	public int deleteBoard(String b_pwd) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
+	public int deleteBoard(int b_id, String b_pwd) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql = null;
-		String sql2 = null;
-		int re = -1;
+		String sql="";
+		int re=-1;
+		String pwd="";
 		
-		BoardBean board = new BoardBean();
-		
-		try {		
+		try {
 			con = getConnection();
+			sql="select b_pwd from boardt where b_number=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, b_id);
+			rs = pstmt.executeQuery();
 			
-			sql = "select * from boardt where b_number = ?";
-			
-			sql2 = "delete from boardt where b_number = ?";
-			pstmt = con.prepareStatement(sql2);
-			rs=pstmt.executeQuery();
-			pstmt.setInt(1,board.getNumber());
-			pstmt.executeUpdate();
-			
-			if(rs.next()) {
-				re = 1;
+			if (rs.next()) {
+				pwd = rs.getString(1);
+				
+				if (!pwd.equals(b_pwd)) {
+					re=0;
+				}else {
+					sql="delete boardt where b_number=?";
+					pstmt.setInt(1, b_id);
+					pstmt.executeUpdate();
+					re=1;
+				}
 			}
-			else {
-				re = -1;
-			}
-			
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
-
+		return re;
+	}
+	public int editBoard(BoardBean board) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="";
+		int re=-1;
+		String pwd="";
+		
+		try {
+			con = getConnection();
+			sql="select b_pwd from boardt where b_number=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board.getNumber());
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				pwd = rs.getString(1);
+				
+				if (!pwd.equals(board.getB_pwd())) {
+					re=0;
+				}else {
+					sql="update boardt set b_name=?, b_email=?, b_title=?, b_content=? where b_number=?";
+					pstmt.setString(1, HanConv.toKor(board.getName()));
+					pstmt.setString(2, HanConv.toKor(board.getEmail()));
+					pstmt.setString(3, HanConv.toKor(board.getTitle()));
+					pstmt.setString(4, HanConv.toKor(board.getContent()));
+					pstmt.setInt(5, board.getNumber());
+					pstmt.executeUpdate();
+					re=1;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 		return re;
 	}
 

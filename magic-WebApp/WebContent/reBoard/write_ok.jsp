@@ -1,3 +1,4 @@
+<%@page import="java.net.InetAddress"%>
 <%@page import="magic.BoardDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -12,6 +13,10 @@
  <jsp:setProperty property = "*" name = "bd"/>
  
 	<%
+	InetAddress address = InetAddress.getLocalHost();
+	String ip = address.getHostAddress();
+	
+	bd.setB_ip(ip);
 	BoardDBBean B_manager = BoardDBBean.getInstance();
 	
 	int re = B_manager.insertBoard(bd);
