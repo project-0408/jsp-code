@@ -5,8 +5,8 @@
 	int number = Integer.parseInt(request.getParameter("number"));
 	String b_pwd = request.getParameter("b_pwd");
 
-	BoardDBBean db=BoardDBBean.getInstance();
-	int re = db.deleteBoard(number, b_pwd);
+	BoardDBBean db = BoardDBBean.getInstance();
+	int re = db.deleteBoard(number,b_pwd);
 	
 	if(re == 1){
 		response.sendRedirect("list.jsp");

@@ -1,30 +1,26 @@
 function check_ok(){
 	
-	if(document.bd_frm.name.value.length == 0){
+	if(document.form.name.value.length == 0){
 		alert("이름을 입력하세요.");
-		bd_frm.name.focus();
+		form.name.focus();
 		return;
 	}
-	else if(document.bd_frm.email.value.length == 0){
-		alert("메일을 입력하세요.");
-		bd_frm.email.focus();
-		return;	
-	}
-	else if(document.bd_frm.b_pwd.value.length == 0){
-		alert("암호를 입력하세요.");
-		bd_frm.b_pwd.focus();
-		return;	
-	}
-	else if(document.bd_frm.title.value.length == 0){
+	if(document.form.title.value.length == 0){
 		alert("제목을 입력하세요.");
-		bd_frm.title.focus();
+		form.title.focus();
 		return;
 	}
-	else if(document.bd_frm.content.value.length == 0){
+	if(document.form.content.value.length == 0){
 		alert("내용을 입력하세요.");
-		bd_frm.content.focus();
+		form.content.focus();
+		return;
 	}
-	document.bd_frm.submit();
+	if(document.form.b_pwd.value.length == 0){
+		alert("비밀번호를 입력하세요.");
+		form.b_pwd.focus();
+		return;
+	}
+	document.form.submit();
 }
 
 function delete_ok(){

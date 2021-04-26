@@ -4,15 +4,14 @@
     
 <jsp:useBean id="board" class="magic.BoardBean"></jsp:useBean>
 <jsp:setProperty property="*" name="board"/>
+
 <%
-	//int b_id = Integer.parseInt(request.getParameter("b_id"));
-	//board.setB_id(b_id);
-	
 	BoardDBBean db=BoardDBBean.getInstance();
 	int re = db.editBoard(board);
 	
 	if(re == 1){
 		response.sendRedirect("list.jsp");
+		
 	}else if(re == 0){
 %>
 		<script language="JavaScript" >

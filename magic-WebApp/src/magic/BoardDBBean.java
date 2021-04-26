@@ -62,7 +62,11 @@ private static BoardDBBean instance = new BoardDBBean();
 				step = step+1;
 				level = level+1;
 			}
-			
+			else {
+				ref = number;
+				step = 0;
+				level = 0;
+			}
 			sql = "insert into boardT values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
@@ -171,7 +175,8 @@ private static BoardDBBean instance = new BoardDBBean();
 		}
 		return board ;
 	}
-	public int deleteBoard(int b_id, String b_pwd) {
+	public int deleteBoard(int number,String b_pwd){
+		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -183,35 +188,31 @@ private static BoardDBBean instance = new BoardDBBean();
 			con = getConnection();
 			sql="select b_pwd from boardt where b_number=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, b_id);
+			pstmt.setInt(1,number);
 			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				pwd = rs.getString(1);
+			if(rs.next()) {
+				
+			pwd = rs.getString(1);
 				
 				if (!pwd.equals(b_pwd)) {
 					re=0;
 				}else {
-					sql="delete boardt where b_number=?";
-					pstmt.setInt(1, b_id);
+					sql="delete boardt where b_number = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1,number);
 					pstmt.executeUpdate();
 					re=1;
 				}
 			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			try {
-				if (rs != null) rs.close();
-				if (pstmt != null) pstmt.close();
-				if (con != null) con.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 		}
 		return re;
 	}
 	public int editBoard(BoardBean board) {
+		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -221,18 +222,22 @@ private static BoardDBBean instance = new BoardDBBean();
 		
 		try {
 			con = getConnection();
-			sql="select b_pwd from boardt where b_number=?";
+			sql="select b_pwd from boardt where b_number = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, board.getNumber());
+			pstmt.setInt(1,board.getNumber());
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
+				
 				pwd = rs.getString(1);
 				
 				if (!pwd.equals(board.getB_pwd())) {
+					
 					re=0;
+					
 				}else {
 					sql="update boardt set b_name=?, b_email=?, b_title=?, b_content=? where b_number=?";
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, HanConv.toKor(board.getName()));
 					pstmt.setString(2, HanConv.toKor(board.getEmail()));
 					pstmt.setString(3, HanConv.toKor(board.getTitle()));
@@ -244,14 +249,6 @@ private static BoardDBBean instance = new BoardDBBean();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			try {
-				if (rs != null) rs.close();
-				if (pstmt != null) pstmt.close();
-				if (con != null) con.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 		}
 		return re;
 	}

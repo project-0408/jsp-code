@@ -31,7 +31,7 @@
 	}
 	%>
 
-	<form name="bd_frm" action="write_ok.jsp" method="post">
+	<form name="form" action="write_ok.jsp" method="post">
 		<input type="hidden" name="number" value="<%=number%>"> <input
 			type="hidden" name="b_ref" value="<%=b_ref%>"> <input
 			type="hidden" name="b_step" value="<%=b_step%>"> <input
@@ -72,8 +72,8 @@
 			</tr>
 			<tr>
 				<td><input type="submit" value="작성" onclick="check_ok()">
-					<input type="reset" value="다시작성"><input type="button"
-					value="글목록" onclick="javascript:window.location='list.jsp'">
+					<input type="reset" value="다시작성">
+					<input type="button" value="글목록" onclick="javascript:window.location='list.jsp'">
 				</td>
 			</tr>
 		</table>

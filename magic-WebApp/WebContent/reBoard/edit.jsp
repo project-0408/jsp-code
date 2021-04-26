@@ -17,13 +17,13 @@
 <body>
 
 		<h1>글 수 정 하 기</h1>
-		<form name="form" action="edit_ok.jsp?number=<%= number%>" method="post">
+		<form name="form" action="edit_ok.jsp?number=<%=number%>" method="post">
 			<table>
 				<tr>
 					<td>작성자</td>
-					<td><input type="text" name="name" value="<%= board.getName()%>" > </td>
+					<td><input type="text" name="name" value="<%=board.getName()%>" > </td>
 					<td>이메일</td>
-					<td><input type="text" name="email" value="<%= board.getEmail()%>" > </td>
+					<td><input type="text" name="email" value="<%=board.getEmail()%>" > </td>
 				</tr>
 				<tr>
 					<td>글제목</td>
@@ -32,7 +32,7 @@
 				<tr>
 					<td colspan="4">
 						<textarea rows="10" cols="65" name="content">
-							<%= board.getContent() %>
+							<%=board.getContent() %>
 						</textarea> 
 					</td>
 				</tr>
@@ -42,7 +42,7 @@
 				</tr>
 				<tr align="center">
 					<td colspan="4">
-						<input type="button" value="글수정" onclick="check_ok()">&nbsp;
+						<input type="submit" value="글수정" onclick="check_ok()">&nbsp;
 						<input type="reset" value="다시작성">
 						<input type="button" value="글목록" onclick="location.href='list.jsp'" >
 					</td>
