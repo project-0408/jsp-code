@@ -5,6 +5,8 @@
 <%
 	int number = Integer.parseInt(request.getParameter("number"));
 
+	String pageNum = request.getParameter("pageNum");
+	
 	BoardDBBean db=BoardDBBean.getInstance();
 	BoardBean board = db.getBoard(number);
 %>
@@ -17,7 +19,7 @@
 <body>
 
 		<h1>글 수 정 하 기</h1>
-		<form name="form" action="edit_ok.jsp?number=<%=number%>" method="post">
+		<form name="form" action="edit_ok.jsp?number=<%=number%>&pageNum<%=pageNum%>" method="post">
 			<table>
 				<tr>
 					<td>작성자</td>
@@ -44,7 +46,7 @@
 					<td colspan="4">
 						<input type="submit" value="글수정" onclick="check_ok()">&nbsp;
 						<input type="reset" value="다시작성">
-						<input type="button" value="글목록" onclick="location.href='list.jsp'" >
+						<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%=pageNum%>'" >
 					</td>
 				</tr>
 			</table>

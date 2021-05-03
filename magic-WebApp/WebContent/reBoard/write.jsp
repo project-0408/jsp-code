@@ -12,7 +12,8 @@
 <body>
 
 	<%
-		int number = 0;
+	String pageNum = request.getParameter("pageNum");
+	int number = 0;
 	int b_ref = 1;
 	int b_step = 0;
 	int b_level = 0;
@@ -31,7 +32,7 @@
 	}
 	%>
 
-	<form name="form" action="write_ok.jsp" method="post">
+	<form name="form" action="write_ok.jsp" method="post" enctype = "multipart/form-data">
 		<input type="hidden" name="number" value="<%=number%>"> <input
 			type="hidden" name="b_ref" value="<%=b_ref%>"> <input
 			type="hidden" name="b_step" value="<%=b_step%>"> <input
@@ -68,12 +69,16 @@
 				</td>
 			</tr>
 			<tr>
+				<td>파일 선택하기 : &nbsp;
+				<input type = "file" name = "b_fname" size = "50"></td>
+			</tr>
+			<tr>
 				<td><textarea rows="10" cols="65" name="content"></textarea></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="작성" onclick="check_ok()">
 					<input type="reset" value="다시작성">
-					<input type="button" value="글목록" onclick="javascript:window.location='list.jsp'">
+					<input type="button" value="글목록" onclick="javascript:window.location='list.jsp?pageNum=<%=pageNum%>'">
 				</td>
 			</tr>
 		</table>

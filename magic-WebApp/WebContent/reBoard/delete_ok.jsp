@@ -1,3 +1,5 @@
+<%@page import="java.io.File"%>
+<%@page import="magic.BoardBean"%>
 <%@page import="magic.BoardDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -8,7 +10,16 @@
 	BoardDBBean db = BoardDBBean.getInstance();
 	int re = db.deleteBoard(number,b_pwd);
 	
+	BoardBean board = db.getBoard(number);
+	String up ="D:\\JMC\\eclipseWorkspace\\magic-WebApp\\upload\\";
+	String fname = board.getB_fname();
+	
+	
 	if(re == 1){
+		if(fname != null){
+			File file = new File(up+fname);
+			file.delete();
+		}
 		response.sendRedirect("list.jsp");
 	}else if(re == 0){
 %>

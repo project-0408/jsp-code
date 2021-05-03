@@ -12,6 +12,7 @@
 <body>
 
 	<%
+	
 	BoardDBBean bdb = BoardDBBean.getInstance();
 	BoardBean bb = bdb.getBoard(Integer.parseInt(request.getParameter("number")));
 
@@ -22,9 +23,12 @@
 	Timestamp date = bb.getDate();
 	int a = bb.getB_hit();
 	String pw = bb.getB_pwd();
+	String b_fname = bb.getB_fname();
+	int b_fsize = bb.getB_fsize();
+	String pageNum = request.getParameter("pageNum");
 	
 	%>
-	<form action="delete.jsp" method="post">
+	<form action="delete.jsp?=pageNum<%=pageNum%>" method="post">
 		<table border="1" cellspacing="0">
 			<tr>
 				<td align="center">글번호</td>
@@ -37,7 +41,17 @@
 				<td align="center">작성일자</td>
 				<td style="width: 200px"><%=date%></td>
 			</tr>
-		
+			<tr>
+				<td align="center">파일</td>
+				<td colspan ="3"><%
+				if(b_fname != null){
+					%>
+					<img src="../img/sip.gif">
+					<a href  = "../upload/"><%=b_fname%></a>
+					<%
+				}
+				%></td>
+			</tr>
 			<tr>
 				<td align="center" >글제목</td>
 				<td colspan = "3"><%=title%></td>
@@ -52,12 +66,12 @@
 			</tr>
 			<tr>
 			<td colspan="4" align="right" >
-				<input type="button" value="글수정" onclick="location.href='edit.jsp?number=<%= number %>'" >
+				<input type="button" value="글수정" onclick="location.href='edit.jsp?number=<%=number%>&pageNum<%=pageNum%>'" >
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="button" value="글삭제" onclick="location.href='delete.jsp?number=<%=number%>'" >
+					<input type="button" value="글삭제" onclick="location.href='delete.jsp?number=<%=number%>&pageNum<%=pageNum%>'" >
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="button" value="답변글" onclick="location.href='write.jsp?number=<%=number%>'">
-					<input type="button" value="글목록" onclick="location.href='list.jsp'" >
+					<input type="button" value="답변글" onclick="location.href='write.jsp?number=<%=number%>&pageNum<%=pageNum%>'">
+					<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum<%=pageNum%>'" >
 					</td>
 			</tr>
 		</table>

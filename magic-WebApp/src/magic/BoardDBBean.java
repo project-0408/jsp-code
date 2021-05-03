@@ -67,7 +67,7 @@ private static BoardDBBean instance = new BoardDBBean();
 				step = 0;
 				level = 0;
 			}
-			sql = "insert into boardT values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql = "insert into boardT values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1,number);
@@ -82,6 +82,8 @@ private static BoardDBBean instance = new BoardDBBean();
 			pstmt.setInt(10,ref);
 			pstmt.setInt(11,step);
 			pstmt.setInt(12,level);
+			pstmt.setString(13,board.getB_fname());
+			pstmt.setInt(14,board.getB_fsize());
 			pstmt.executeUpdate();
 			
 			re = 1 ;
@@ -94,41 +96,95 @@ private static BoardDBBean instance = new BoardDBBean();
 		}
 		return re;
 	}
-	public ArrayList<BoardBean> listBoard(){
-		Connection con = null;
+
+	public ArrayList<BoardBean> listBoard(String pageNumber) {
+		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		
-		ArrayList<BoardBean> boardList = new ArrayList<BoardBean>();
-		
+		ResultSet pageSet = null;
+		int dbCount = 0;
+		int absoultePage = 1;
+
+		ArrayList<BoardBean> boardlist = new ArrayList<BoardBean>();
 		try {
-			con = getConnection();
-			stmt = con.createStatement();
-			String sql = "select * from boardT order by b_ref desc,b_step asc";
-			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
-				BoardBean board = new BoardBean();
-				
-				board.setNumber(rs.getInt(1));
-				board.setName(rs.getString(2));
-				board.setEmail(rs.getString(3));
-				board.setTitle(rs.getString(4));
-				board.setContent(rs.getString(5));
-				board.setDate(rs.getTimestamp(6));
-				board.setB_hit(rs.getInt(7));
-				board.setB_pwd(rs.getString(8));
-				board.setB_ip(rs.getString(9));
-				board.setB_ref(rs.getInt(10));
-				board.setB_step(rs.getInt(11));
-				board.setB_level(rs.getInt(12));
-				
-				boardList.add(board);
+			conn = getConnection();
+
+			stmt =conn.createStatement();
+			pageSet = stmt.executeQuery("select count(b_number) from boardt ");
+
+			if (pageSet.next()) {
+				dbCount = pageSet.getInt(1);
+				pageSet.close();
+				stmt.close();
 			}
-		}catch(Exception e){
+
+			if (dbCount % BoardBean.pageSize == 0) {
+				BoardBean.pageCount = dbCount / BoardBean.pageSize;
+			} else {
+				BoardBean.pageCount = dbCount / BoardBean.pageSize + 1;
+
+			}
+			if (pageNumber != null) {
+				BoardBean.pageNum = Integer.parseInt(pageNumber);
+				absoultePage = (BoardBean.pageNum - 1) * BoardBean.pageSize + 1;
+			}
+
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE); // 페이징 처리할때 공식
+			
+			String sql = "select * from boardt order by b_ref desc ,b_step asc";
+			rs = stmt.executeQuery(sql);
+
+			if (rs.next()) {
+				
+				rs.absolute(absoultePage); // 페이징 처리할때 공식 걍 외워라;
+				int count = 0;
+				while (count < BoardBean.pageSize) {
+					
+					BoardBean board = new BoardBean();
+					board.setNumber(rs.getInt(1));
+					board.setName(rs.getString(2));
+					board.setEmail(rs.getString(3));
+					board.setTitle(rs.getString(4));
+					board.setContent(rs.getString(5));
+					board.setDate(rs.getTimestamp(6));
+					board.setB_hit(rs.getInt(7));
+					board.setB_pwd(rs.getString(8));
+					board.setB_ip(rs.getString(9));
+					board.setB_ref(rs.getInt(10));
+					board.setB_step(rs.getInt(11));
+					board.setB_level(rs.getInt(12));
+					board.setB_fname(rs.getString(13));
+					board.setB_fsize(rs.getInt(14));
+
+					boardlist.add(board);
+					if (rs.isLast()) {
+						break;
+					}else {
+						rs.next();
+					}
+					count ++;
+				}
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
-		return boardList;
+		return boardlist;
+
 	}
 	public BoardBean getBoard(int number){
 		
@@ -168,6 +224,8 @@ private static BoardDBBean instance = new BoardDBBean();
 				board.setB_ref(rs.getInt(10));
 				board.setB_step(rs.getInt(11));
 				board.setB_level(rs.getInt(12));
+				board.setB_fname(rs.getString(13));
+				board.setB_fsize(rs.getInt(14));
 			}
 			
 		}catch(Exception e){

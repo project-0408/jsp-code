@@ -22,8 +22,56 @@ public class BoardBean {
 	private int b_ref;
 	private int b_step;
 	private int b_level;
+	private String b_fname;
+	private int b_fsize;
 	
+	public static int pageSize = 10;
+	public static int pageCount = 1;
+	public static int pageNum = 1;
+
+	public static String pageNumber(int limit) {
+		String str="";
+		int temp = (pageNum - 1) % limit;
+		int startPage = pageNum - temp; //pageNum - (pageNum - 1) % limit
+		
+		if((startPage - limit) > 0) {
+			str="<a href='list.jsp?pageNum="+(startPage-1)+"'>[이전]</a>&nbsp;&nbsp;";
+		}
+		
+		for(int i=startPage; i<(startPage+limit); i++) {
+			if (i == pageNum) {
+				str+="["+i+"]&nbsp;&nbsp;";
+			}else {
+				str+="<a href='list.jsp?pageNum="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
+			}
+			
+			if (i >= pageCount) {
+				break;
+			}
+		}
+		
+		if ((startPage + limit) <= pageCount) {
+			str += "<a href='list.jsp?pageNum="+(startPage+limit)+"'>[다음]</a>";
+		}
+		
+		return str;
+	}
 	
+	public String getB_fname() {
+		return b_fname;
+	}
+	
+	public void setB_fname(String b_fname) {
+		this.b_fname = b_fname;
+	}
+	
+	public int getB_fsize() {
+		return b_fsize;
+	}
+	
+	public void setB_fsize(int b_fsize) {
+		this.b_fsize = b_fsize;
+	}
 	public int getB_ref() {
 		return b_ref;
 	}
