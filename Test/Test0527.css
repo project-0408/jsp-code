@@ -1,0 +1,43 @@
+@charset "EUC-KR";
+
+form{
+	margin:  0 auto;
+	border: 1px solid black;
+}
+.header {
+	border: 1px solid black;
+	height: 150px;
+	margin: 10px;
+	line-height:150px;
+}
+.header .a_box{
+	margin-left : 200px;
+}
+.section {
+	display:flex;
+	height:600px;
+}
+.leftbox {
+	border: 1px solid black;
+	margin:10px;
+	height:580px;
+	flex:1;
+}
+.leftbox .a_box{
+	margin-top:220px;
+	}
+.mainbox {
+	border: 1px solid black;
+	margin: 10px;
+	float:left;
+	flex:9;
+}
+.mainbox .content{
+	margin-top:220px;
+}
+
+.footer {
+	border: 1px solid black;
+	height:150px;
+	margin: 10px;
+}
