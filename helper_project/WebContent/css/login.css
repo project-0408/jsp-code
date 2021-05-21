@@ -1,0 +1,151 @@
+@charset "EUC-KR";
+@font-face {
+     font-family: 'S-CoreDream-4Regular';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family:'S-CoreDream-4Regular',sans-serif;
+  
+  }
+  body {
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  }  
+  .total{
+	position: relative;
+	min-height: 100vh;
+}
+  .header{
+    height: 150px;
+    text-align: left;
+    box-sizing: border-box;
+    padding-bottom: 2.5rem;
+    background-image: url("../images/headerr.png");
+}
+.header_logo h1 a{
+    padding-top:20px ;
+    padding-left: 40px;
+    letter-spacing: 2px;
+}
+.header_gnb ul{
+    margin-top: 5px;
+    margin-right: 40px;
+    text-align: right;
+}
+.header_gnb ul li{
+    display: inline-block;
+}
+.header_gnb ul a{
+    display: block;
+    font-family: 'S-CoreDream-4Regular',sans-serif;
+    color: 	white;
+    margin: 0px 16px;
+    letter-spacing: 1px;
+
+} 
+  .loginForm {
+  	margin: 0px;
+ 	margin-left: auto;
+ 	margin-right: auto;
+    width:400px;
+    height:500px;
+    padding: 30px, 20px;
+    background-color:#FFFFFF;
+    text-align:center;
+    border-radius: 15px;
+  }
+  .loginForm h1{
+    text-align: center;
+    margin: 30px;
+    font-size: 2.5rem;
+  }
+  
+  .idForm{
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+  }
+  
+  .passForm{
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+  }
+  
+  .id {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .pw {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .btn {
+    position:relative;
+    left:40%;
+    transform: translateX(-50%);
+    margin-bottom: 20px;
+    width:80%;
+    height:40px;
+    background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+  }
+  
+  .btn:hover {
+    background-position: right;
+  }
+  
+  .bottomText {
+    text-align: right;
+    font-size: 12px;
+    margin-right: 35px;
+    color: #999;
+  }
+  a:hover{/*비번찾기 올리면 색변하게*/
+	color: #38d39f;
+  }
+.footer{
+    display: flex;
+    background: #1f1f1f;
+    padding:30px;
+    margin-top: 50px;
+  }
+ #f_img{
+      width: 100px;
+      height: 100px;
+  }
+  .footer > div:first-child {
+    flex:3;
+    text-align: center;
+    color: #fff;
+  }
+  .footer > div:last-child {
+    flex:9;
+    color: #fff;
+  }
+  .space{
+	height:100px;	
+}

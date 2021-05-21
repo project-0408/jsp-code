@@ -1,0 +1,253 @@
+@charset "EUC-KR";
+
+@charset "utf-8";
+
+@font-face {
+	font-family: 'S-CoreDream-4Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	box-sizing: border-box;
+  	list-style: none;
+}
+html{
+	height: 100%;
+}
+body{
+	margin: 0;
+	height: 100%;
+/*	padding: 20px;*/
+}
+.space{
+	height:100px;	
+}
+.header {
+	height: 150px;
+	text-align: left;
+	box-sizing: border-box;
+	padding-bottom: 2.5rem;
+	background-image: url("../images/header.png");
+	padding-bottom: 20px;
+	margin-bottom: 40px;
+}
+
+.header_logo h1 a {
+	padding-top: 20px;
+	padding-left: 40px;
+	letter-spacing: 2px;
+}
+
+.header_gnb ul {
+	margin-top: 5px;
+	margin-right: 40px;
+	text-align: right;
+}
+
+.header_gnb ul li {
+	display: inline-block;
+}
+
+.header_gnb ul a {
+	display: block;
+	font-family: 'S-CoreDream-4Regular', sans-serif;
+	color: #6b6c6f;
+	margin: 0px 16px;
+	letter-spacing: 1px;
+}
+
+.product_view {
+	margin:0 auto;
+	position: relative;
+	padding: 0 0 0 395px;
+	width: 962px;
+	box-sizing: border-box;
+	margin-bottom: 170px;
+	margin-left: 60px;
+}
+
+.product_view .img {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.product_view .img>img {
+	width: 368px;
+	height: 370px;
+	border: 1px solid #e8e8e8;
+}
+
+.product_view .img li:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.product_view .img li {
+	float: left;
+	padding: 10px 10px 0 0;
+	list-style: none;
+}
+
+.product_view .img li.on img {
+	border-color: #0a56a9;
+}
+
+.product_view .img li img {
+	width: 68px;
+	height: 68px;
+	border: 1px solid #e8e8e8;
+}
+
+.product_view h2 {
+	margin: 0 0 15px;
+	padding: 0 0 20px;
+	border-bottom: 2px solid #333;
+	font-size: 24px;
+	color: #232323;
+	line-height: 26px;
+}
+table{
+	margin-bottom: 50px;
+}
+.product_view table td{
+	position: absolute;
+}
+.product_view table th, .product_view table td {
+	padding: 14px 0;
+	font-size: 15px;
+	color: #444;
+	text-align: left;
+}
+
+.product_view table td.price {
+	font-size: 22px;
+}
+
+.product_view table td.total {
+	font-size: 19px;
+	color: #0a56a9;
+}
+
+.product_view table td.total b {
+	font-size: 22px;
+}
+
+.product_view table .length {
+	position: relative;
+	width: 71px;
+	height: 32px;
+	border: 1px solid #c6c6c6;
+}
+
+.product_view table .length input {
+	width: 44px;
+	height: 30px;
+	border: none;
+	border-right: 1px solid #c6c6c6;
+	text-align: center;
+}
+
+.product_view table .length a {
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	width: 26px;
+	height: 16px;
+	color: transparent;
+}
+
+.product_view table .length a:nth-of-type(1) {
+	top: 0;
+	background: url("../images/ico_up.png") no-repeat center;
+}
+
+.product_view table .length a:nth-of-type(2) {
+	bottom: 0;
+	background: url("../images/ico_down.png") no-repeat center;
+	border-top: 1px solid #c6c6c6;
+}
+
+.product_view table select {
+	width: 100%;
+	border: 1px solid #c6c6c6;
+	box-sizing: border-box;
+	background: url("../images/ico_select.png") no-repeat right 11px center;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.product_view table select::-ms-expand {
+	display: none;
+}
+
+.product_view .btns {
+	padding: 45px 0 0;
+	text-align: center;
+}
+
+.product_view .btns>a {
+	display: inline-block;
+	width: 136px;
+	height: 42px;
+	border-radius: 2px;
+	font-size: 16px;
+	color: #fff;
+	line-height: 42px;
+	margin: 15px;
+	font-family: 'S-CoreDream-4Regular', sans-serif;
+}
+
+.product_view .btns>a.btn1 {
+	background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b
+		100%);
+		position: relative;
+}
+
+.product_view .btns>a.btn2 {
+	background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+}
+
+.product_view .btns>a.btn3 {
+	background: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df
+		100%);
+}
+
+footer{
+    width: 100%;
+    height: 120px;
+    margin-top:30px ;
+    border: 0px solid;
+    clear: both;
+    bottom: 0;
+    background-color:black ; 
+}
+#footer_box{
+    width: 1140px;
+    height: 100px;
+    margin: 0 auto;
+    border: 0px solid;
+}
+#footer_logo{
+    float: left;
+    margin: 10px 0 0 30px;
+    border: 1px solid snow;
+    width: 100px;
+    height: 100px;
+}
+#footer_box #address{
+    float: left;
+    margin: 25px 0 0 10px;
+    border: 0px solid snow;
+    font-family: 'S-CoreDream-4Regular',sans-serif ;
+    color: white;
+}
