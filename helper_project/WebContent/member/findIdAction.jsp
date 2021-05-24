@@ -38,7 +38,7 @@
             {
 %>
                   입력된 정보가 틀렸습니다.<p>
-                  <input type = "button" value = "다시 입력하기" onclick ="location.herf='idpwd.jsp'">
+                  <input type = "button" value = "다시 입력하기" onclick ="location.href='idpwd.jsp'">
 <%
             }
 %>

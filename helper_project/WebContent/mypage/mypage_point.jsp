@@ -1,5 +1,20 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="db.userBeans.UserBean"%>
+<%@page import="db.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
+<%
+	String user_id = (String)session.getAttribute("id");
+	String user_no = (String)session.getAttribute("no");
+	UserDAO DAO = UserDAO.getInstance();
+	UserBean user = DAO.getuser(user_id);
+%>
+<%!
+		public String day(){
+		Calendar cal =Calendar.getInstance();
+		return cal.get(Calendar.YEAR)+"/"+(cal.get(Calendar.MONTH)+1)+"/"+(cal.get(Calendar.DATE));
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +43,10 @@
                 <div class="mainbox">
                     <h1>마이포인트 | 포인트 적립/ 사용내역</h1>
                     <br>
-                    <fieldset class="main_a"> (홍길동) 님의 적립 또는 사용한 포인트 내역을 한눈에 확인 가능합니다.</fieldset>
+                    <fieldset class="main_a"> <%=user.getNick() %> 님의 적립 또는 사용한 포인트 내역을 한눈에 확인 가능합니다.</fieldset>
                     <br>
                     <h5>-포인트는 적립/사용한 다음날 최종 확인하실 수 있습니다.</h5>
-                    <h5>-현재 포인트 내역은 (1111년 11월 11일) 기준입니다</h5>
+                    <h5>-현재 포인트 내역은 <%=day() %> 기준입니다</h5>
                     <br>
                     <table  border="2" class="pointt">
                         <tr>

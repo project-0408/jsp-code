@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import db.reviewBeans.ReviewBoard;
 import db.reviewBeans.ReviewPostBean;
 
 public class ReviewBoardDAO {
@@ -12,38 +14,23 @@ public class ReviewBoardDAO {
 	public static ReviewBoardDAO getInstance() {
 		return instance;
 	}
-	public ReviewPostBean updateReview(String review_post_no) {
+	
+	public int deleteReivew(String review_no, ReviewPostBean rb) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "UPDATE REVIEW_BOARD SET TITLE = ?, DETAIL = ? WHERE NO = ?";
-		ReviewPostBean rpb = new ReviewPostBean();
-		String title = rpb.getReview_titile();
-		String detail = rpb.getReview_detail();
+		String sql = "DELETE FROM REVIEW_BOARD WHERE NO = ? AND CREATOR_NO = ?";
+		int result = -1;
 		try {
 			con=DBConnection.getConnection();
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, Integer.valueOf(review_post_no));
-			pstmt.setString(2, title);
-			pstmt.setString(3, detail);
-			
-			rs=pstmt.executeQuery();
+			pstmt.setInt(1, Integer.valueOf(review_no));
+			pstmt.setInt(2, rb.getCreator());
+			result = pstmt.executeUpdate();
+			System.out.println("삭제성공");
 		}catch (Exception e) {
+			System.out.println("리뷰삭제실패");
 			// TODO: handle exception
-		}
-		sql = "SELECT TITLE, DETAIL FROM REVIEW_BOARD WHERE NO = ?";
-		try {
-			con=DBConnection.getConnection();
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, Integer.valueOf(review_post_no));
-			rs=pstmt.executeQuery();
-			if (rs.next()) {
-				rpb=new ReviewPostBean();
-				rpb.setReview_titile(rs.getString("TITLE"));
-				rpb.setReview_detail(rs.getString("DETAIL"));
-			}
-		} catch (Exception e) {
-			System.out.println("실패" + e);
 		} finally {
 			try {
 				if(con != null) con.close();
@@ -53,9 +40,38 @@ public class ReviewBoardDAO {
 				// TODO: handle exception
 			}
 		}
-		return rpb;
+		return result;
 		
 	}
+	
+	public int updateReview(String review_no, ReviewPostBean rb) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="UPDATE REVIEW_BOARD SET TITLE = ?, DETAIL = ? WHERE NO = ?";
+		int result=-1;
+		try {
+			con=DBConnection.getConnection();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, rb.getReview_titile());
+			pstmt.setString(2, rb.getReview_detail());
+			pstmt.setInt(3, Integer.valueOf(review_no));
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			try {
+				if(con!=null)con.close();
+				if(pstmt!=null)con.close();
+				if(rs!=null)con.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		return result;
+	}
+	
+	
 	public ReviewPostBean getPost(String review_post_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -101,43 +117,35 @@ public class ReviewBoardDAO {
 		return rpb;
 	}
 	
-	public ArrayList<ReviewPostBean> getList(){
-//		ArrayList<ReviewPostBean> getList = new ArrayList<ReviewPostBean>();
-//		ArrayList<ReviewPostBean> rbl = new ArrayList<ReviewPostBean>();
-//		ArrayList<ReviewBoard> rblist = new ArrayList<ReviewBoard>();
-		ArrayList<ReviewPostBean> rbl = new ArrayList<ReviewPostBean>();
+	
+	
+	public ArrayList<ReviewBoard> getList(){
+		ArrayList<ReviewBoard> rblist = new ArrayList<ReviewBoard>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		ReviewPostBean rpb = new ReviewPostBean();
 		try {
-//			String sql="SELECT NO, TITLE, TO_TIMESTAMP(TO_CHAR(CREATED_AT, 'YY-MM-DD')) AS \"CREATED_AT\", HITS , CREATOR_NO, DETAIL, JOB_POST_NO FROM REVIEW_BOARD";
 			String sql="SELECT NO, TITLE, CREATED_AT, HITS , CREATOR_NO, DETAIL, JOB_POST_NO FROM REVIEW_BOARD";
 			con=DBConnection.getConnection();
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			while (rs.next()) {
-//				rb.set(rs.getString(1));
-//				rb.setCreatedat(rs.getTimestamp(2));
-//				rb.setHits(rs.getInt(3));
-				rpb.setNo(rs.getInt("NO"));
-				rpb.setReview_titile(rs.getString("TITLE"));
-				rpb.setCreated_at(rs.getTimestamp("CREATED_AT"));
-				rpb.setReview_hits(rs.getInt("HITS"));
-				rpb.setCreator(rs.getInt("CREATOR_NO"));
-				rpb.setReview_detail(rs.getString("DETAIL"));
-				rpb.setJob_post(rs.getInt("JOB_POST_NO"));
-				rbl.add(rpb);
-				
-				System.out.println(rs.getInt(1));
-				System.out.println(rs.getString(2));
-				System.out.println(rs.getTimestamp(3));
-				System.out.println(rs.getInt(4));
-				System.out.println(rs.getInt(5));
-				System.out.println(rs.getString(6));
-				System.out.println(rs.getInt(7));
+				ReviewBoard rb = new ReviewBoard();
+				rb.setNo(rs.getInt("NO"));
+				rb.setTitle(rs.getString("TITLE"));
+				rb.setCreatedat(rs.getTimestamp("CREATED_AT"));
+				rb.setHits(rs.getInt("HITS"));
+				rb.setCreator_no(rs.getInt("CREATOR_NO"));
+				rb.setReview(rs.getString("DETAIL"));
+				rb.setJob_post_no(rs.getInt("JOB_POST_NO"));
+				rblist.add(rb);
 			}
-			
+//            for(int i = 0 ; i <rblist.size() ; i++){
+//
+//                ReviewBoard rb = rblist.get(i);
+//
+//                System.out.println(rb.getTitle() + "\t" + rb.getHits() + "\t" + rb.getCreatedat() + "\t");
+//         }
 		} catch (Exception e) {
 			System.out.println("목록실패 : " + e);
 		}finally {
@@ -149,7 +157,7 @@ public class ReviewBoardDAO {
 				// TODO: handle exception
 			}
 		}
-		return rbl;
+		return rblist;
 	}
 	
 }

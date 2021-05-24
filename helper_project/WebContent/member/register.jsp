@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
- <script type="text/javascript" src="checking.js" charset="utf-8"></script>
+ <script type="text/javascript" src="checking.js" charset="UTF-8"></script>
 <link rel="stylesheet" href="../css/register1.css" />
 <title>document</title>
 
@@ -72,8 +72,11 @@ function openConfirmid(inputKey, inputValue)
 						</tr>
 						<tr>
 							<th>성별</th>
-							<td><input type="radio" name="gender" value='0'>남 
-							<input type="radio" name="gender" value='1'>여</td>
+							<td>
+							<input type="radio" name="gender" value=0>남 
+							<input type="radio" name="gender" value=1>여
+							<input type="radio" name="gender" value=2>선택 안함
+							</td>
 						</tr>
 						<tr>
 							<th>생일</th>
@@ -102,7 +105,7 @@ function openConfirmid(inputKey, inputValue)
 
 						<!-- 주소 입력 넣을 부분 -->
 						<tr>
-							<script type="text/javascript" src="<%=p_helper_path %>/util/juso3.js" ></script>
+							<script type="text/javascript" src="<%=p_helper_path %>/util/juso2.js" ></script>
 							<td class="title">도로명 주소</td>
 							<td colspan="2"><input  type="text"  style="width:auto;" id="location_addr" name="location_addr" readonly/></td>
 							<td><input type="button" onClick="goPopup();" value="주소 찾기"/></td>

@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 <%@page import="db.ReviewPostDAO"%>
-=======
-<%@page import="myUtil.*"%>
->>>>>>> Stashed changes
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

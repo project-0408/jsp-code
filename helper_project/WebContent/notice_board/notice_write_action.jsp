@@ -7,12 +7,16 @@
     
 <%	request.setCharacterEncoding("UTF-8");%>
 
-<%		String title = request.getParameter("title");
-		int category = Integer.parseInt(request.getParameter("category"));
+
+<%		String p_helper_path = request.getContextPath();
+		String user_no = (String)session.getAttribute("no");
+		String title = request.getParameter("title");
+		String category =request.getParameter("category");
 		String detail = request.getParameter("detail");
 
 		NoticeDTO dto = new NoticeDTO();
 
+		dto.setCreator_no(Integer.valueOf(user_no));
 		dto.setTitle(title);
 		dto.setCategory(category);
 		dto.setDetail(detail);
@@ -24,7 +28,7 @@
 %>
 					<script>
 					alert('공지사항을 등록했습니다.');
-					  location.href='notice_list';
+					  location.href='<%=p_helper_path%>/notice_board/notice_list.jsp';
 					</script>
 <% 
 

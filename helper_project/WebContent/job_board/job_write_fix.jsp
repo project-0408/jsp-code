@@ -57,8 +57,8 @@ System.out.println(jp.getJob_detail()); */
 				<ul>
 					<h4>
 						카테고리 &nbsp;&nbsp;&nbsp; 
-						<select name="category" id="category" value="<%=jp.getCategory() %>">
-								<option value=4>선택안함</option>
+						<select name="category" id="category">
+								<option value=4 >선택안함</option>
 								<option value=5>가사도우미</option>
 								<option value=6>청소도우미</option>
 								<option value=7>등하원도우미</option>
@@ -73,6 +73,10 @@ System.out.println(jp.getJob_detail()); */
 								<option value=16>직구대행</option>
 								<option value=17>기타</option>
 							</select>
+					<script>
+						$("#category").val("<%=jp.getCategory()%>").prop("selected", true);
+					</script>					
+							
 					</h4>
 				</ul>
 				<ul>
@@ -84,7 +88,7 @@ System.out.println(jp.getJob_detail()); */
 				<ul>
 					<h4>
 					<!-- 주소 입력 -->
-						<script type="text/javascript" src="<%=p_helper_path %>/util/juso3.js" ></script>
+						<script type="text/javascript" src="<%=p_helper_path %>/util/juso2.js" ></script>
 						도로명 주소 
 						<input  type="text"  style="width:auto;" id="location_addr" name="location_addr" value="<%=jp.getLocation_addr() %>" readonly/>
 						 <input type="button" onClick="goPopup();" value="주소 찾기"/>

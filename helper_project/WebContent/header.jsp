@@ -21,7 +21,7 @@ String p_helper_path = request.getContextPath();
 			<ul class = "nav">
 					<li><a href="<%=p_helper_path%>/main.jsp">HOME</a></li>
 					<li><a href="<%=p_helper_path%>/job_board/job_main.jsp">구인게시판</a></li>
-					<li><a href="<%=p_helper_path%>/shop/shop.jsp">포인트상점</a></li>
+					<li><a href="<%=p_helper_path%>/review_board/review_list.jsp">후기게시판</a></li>
 					<li><%
         				if(session.getAttribute("id")==null){
         				%>

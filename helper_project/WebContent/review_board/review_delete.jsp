@@ -13,9 +13,9 @@
 	rb.setCreator(Integer.valueOf(user_no));
 	
 	String review_no = request.getParameter("rno");
-	System.out.println(user_no + review_no);
-	rbDAO.updateReview(review_no, rb);
+	System.out.println("user_no : " + user_no + ", review_no : " + review_no);
+	rbDAO.deleteReivew(review_no, rb);
 %>
 <script>
-document.location.href="<%=p_helper_path%>/review_board/review_reading.jsp?rno=<%=review_no%>";
+document.location.href="<%=p_helper_path%>/review_board/review_list.jsp";
 </script>

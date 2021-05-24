@@ -8,43 +8,17 @@
 <meta charset="EUC-KR">
 <link rel="stylesheet" href="../css/mypage_import.css" />
 <%
-String user_id = (String)session.getAttribute("id");
-String user_no = (String)session.getAttribute("no");
-UserDAO uDAO = UserDAO.getInstance();
-UserBean user = uDAO.getuser(user_id);
+	String user_id = (String)session.getAttribute("id");
+	String user_no = (String)session.getAttribute("no");
+	UserDAO uDAO = UserDAO.getInstance();
+	UserBean user = uDAO.getuser(user_id);
 %>
-<title>마이페이지</title>
-
-<script>
-// 아이디 중복 여부를 판단
-function openConfirmid(inputKey, inputValue)
-{
-	console.log(inputKey);
-	console.log(inputValue);
-      // 아이디를 입력했는지 검사
-      if(inputValue == "")
-      {
-            alert(inputKey+"를 입력하세요");
-            return;
-      }
-
-      // url과 사용자 입력 아이디를 조합합니다.
-      url = "confirmId.jsp?key="+inputKey+"&value="+inputValue;
-      console.log(url);
-
-      // 새로운 윈도우를 엽니다.
-      open(url, "confirm",
-            "toolbar = no, location = no, status = no," +
-            "menubar = no, scrollbars = no, resizable = no," +
-            "width = 300, height = 200");
-}
-</script>
-
+<title>경력사항</title>
 </head>
 <body>
 	<div class="total">
 		 <%@ include file="/header.jsp" %>
-		<form name="form" method="POST" action="<%=p_helper_path%>/mypage/member_modify_ok.jsp?no=<%=user_no%>">
+		<form name="form" method="POST" action="<%=p_helper_path%>/mypage/member_modify_ok.jsp?no=<%=user_no%>" onsubmit="return update();">
 			<div class="section">
 				<div class="leftbox">
 					<h3>My page</h3>
@@ -75,11 +49,7 @@ function openConfirmid(inputKey, inputValue)
 							<td><input type="password" style="width: auto" name="pw" value="<%=user.getPw()%>"></td>
 							<td class="title">비밀번호 확인</td>
 							<td><input type="password" style="width: auto" value="<%=user.getPw()%>"></td>
-						</tr>
-						<tr>
-							<td>닉네임</td>
-							<td><input type="text"name="nick" value = "<%=user.getNick()%>"></td>
-							<td><input type="button" value="중복확인" onclick = "openConfirmid(this.form.nick.name, this.form.nick.value)"></td>
+							<!-- ★ leni ★ 비밀번호 두개가 동일한지 체크하는 함수 필요 -->
 						</tr>
 						<tr>
 							<td class="title">생년월일</td>
@@ -91,10 +61,10 @@ function openConfirmid(inputKey, inputValue)
 						</tr>
 						<tr>
 							<td class="title">메일주소</td>
-							<td colspan="3" text-aling="end"><input type="email" name="email" value = "<%=user.getEmail() %>" /></td>
+							<td colspan="3" text-aling="end"><input type="email" name="email" id = "email" value = "<%=user.getEmail() %>" /></td>
 						</tr>
 						<tr>
-							<script type="text/javascript" src="<%=p_helper_path %>/util/juso3.js" ></script>
+							<script type="text/javascript" src="<%=p_helper_path %>/util/juso2.js" ></script>
 							<td class="title">도로명 주소</td>
 							<td colspan="2"><input  type="text"  style="width:auto;" id="location_addr" name="location_addr" value="<%=user.getLocation_addr() %>" readonly/></td>
 							<td><input type="button" onClick="goPopup();" value="주소 찾기"/></td>
@@ -111,17 +81,30 @@ function openConfirmid(inputKey, inputValue)
 					<br>
 					<br>
 					<div class="button">
-						<button type="submit" onclick = "update()">수정 완료</button>
+						<button type="submit">수정 완료</button>
 						 <script>
 						 function update(){
 							 /* ★ leni ★ 현재 비밀번호 input을 만들고 update()에서 비교해야 할 듯, 프롬프트로 하면 비밀번호가 노출 됨 */ 
+      						var user_pw = prompt("기존 비밀번호를 입력해주세요.", "");
      						 if (user_pw != '<%=user.getPw()%>') {
 	        					alert("비밀 번호가 다릅니다.");
 	        					return false;
      						}
-     						 
+						 if(document.form.email.value.length != 0){
+								result = email_check(document.form.email.value)
+								if(result != true){
+									alert("Email을 올바른 형식으로 써주세요.");
+								}	
+							console.log("result: "+result);
+							return result;
+							}
      						return true;
 						 }
+						}
+						function email_check( email ) {    
+						    var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+						    return (email != '' && email != 'undefined' && regex.test(email)); 
+						}
    						</script>
 						<button type="button" onclick="member_delete()">회원 탈퇴</button>
 						<script>

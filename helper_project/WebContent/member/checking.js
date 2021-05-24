@@ -27,7 +27,7 @@ function member_ok(){
 	else if(document.form.nick.value.length == 0){
 		alert("닉네임을 써주세요");
 	}
-	else if(document.form.gender.value == null){
+	else if(document.form.gender.value == ""){
 		alert("성별 체크 해주세요.");
 	}
 	else if(document.form.pw.value.length == 0){

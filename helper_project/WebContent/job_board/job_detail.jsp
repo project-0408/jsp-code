@@ -40,6 +40,47 @@
               <h5>신뢰등급 : <%=jp.getCreator_grade() %></h5><br>
               <h3>장소 : <%=jp.getLocation() %></h3><br>
               <h3>시간 : <%=jp.getJob_day() %> <%=jp.getTime() %></h3><br>
+              <h3>카테고리 : <%
+              				if(jp.getCategory()==5){
+            	  				%>가사도우미<%
+              				}
+              				else if(jp.getCategory()==6){
+              					%>청소도우미<%
+              				}
+              				else if(jp.getCategory()==7){
+              					%>등하원도우미<%
+              				}
+              				else if(jp.getCategory()==8){
+              					%>요리도우미<%
+              				}
+              				else if(jp.getCategory()==9){
+              					%>산후도우미<%
+              				}
+              				else if(jp.getCategory()==10){
+              					%>식당도우미<%
+              				}
+              				else if(jp.getCategory()==11){
+              					%>육아도우미<%
+              				}
+              				else if(jp.getCategory()==12){
+              					%>펫시터<%
+              				}
+              				else if(jp.getCategory()==13){
+              					%>베이비시터<%
+              				}
+              				else if(jp.getCategory()==14){
+              					%>요양보호사<%
+              				}
+              				else if(jp.getCategory()==15){
+              					%>대리티켓구매<%
+              				}
+              				else if(jp.getCategory()==16){
+              					%>직구대행<%
+              				}
+              				else if(jp.getCategory()==17){
+              					%>기타<%
+              				}
+              %></h3><br>
               <h3>인원수 : <%=jp.getJob_num_of_people() %></h3><br>
               <h3>PAY : <%=jp.getJob_pay() %></h3>
             </div>

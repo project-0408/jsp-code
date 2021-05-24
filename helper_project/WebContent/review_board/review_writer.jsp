@@ -14,6 +14,7 @@
         %>
 <%
 	ReviewPostDAO manager = ReviewPostDAO.getInstance();
+	request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
 <html>

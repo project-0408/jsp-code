@@ -33,19 +33,14 @@
                   <input type = "submit" value = "로그인화면으로">
 <%
             }
-            else
-            {
+            else {
 %>
                   정보가 틀렸습니다.<p>
-                  <input type = "button" value = "다시 입력하기" onclick =
-                        "javascript<x>:window.location='idpwd.jsp'">
+                  <input type = "button" value = "다시 입력하기" onclick ="location.href='idpwd.jsp'">
 <%
             }
 %>
 </form>
 </center>
 </body>
-<%
-            }catch(Exception e) {}
-%>
-</html></x>
+</html>

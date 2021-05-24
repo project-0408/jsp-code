@@ -26,9 +26,7 @@ function write_ok(){
 	else if(document.form.job_pay.value == 0){
 		alert("금액을 써주세요.");
 	}
-	else if(document.form.job_detail.value.length == 0){
-		alert("상세내용를 써주세요.");
-	}else {
+	else {
 		result = true;
 	}
 	

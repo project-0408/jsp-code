@@ -58,6 +58,6 @@ $(function() {
 </script>
 
 
-<input type="text" name="job_day" id="timeDay" placeholder="날짜를 선택하세요">
+<input type="text" name="job_day" id="timeDay" placeholder="날짜를 선택하세요"><br>
 <input type="text" name="job_time_start" id="timeStart" placeholder="시작 시간을 선택하세요">
 <input type="text" name="job_time_end" id="timeEnd" placeholder="종료 시간을 선택하세요">

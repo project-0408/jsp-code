@@ -43,27 +43,19 @@ public class NoticeDAO{
 	public static NoticeDAO getInstance() {
 		return instance;
 	}
-
 	public NoticeDAO() {
-		
 		try {
-			
 			con = DBConnection.getConnection();
-
 			System.out.println("DBCP연결성공");
 		} 
 		catch (Exception e) {
-			
 			System.out.println("DBCP연결실패");
 			e.printStackTrace();
 		}
 	}
-
 	// 자원반납하기
 	public void close() {
-		
 		try {
-			
 			if (rs != null)
 				rs.close();
 			if (psmt != null)
@@ -72,7 +64,6 @@ public class NoticeDAO{
 				con.close();
 		} 
 		catch (Exception e) {
-			
 			System.out.println("자원반납시 예외발생");
 			e.printStackTrace();
 		}
@@ -89,7 +80,7 @@ public class NoticeDAO{
 				NoticeDTO dto = new NoticeDTO();
 				dto.setNo(rs.getInt("no"));
 				dto.setCreated_at(rs.getTimestamp("created_at"));
-				dto.setCategory(rs.getInt("category"));
+				dto.setCategory(rs.getString("category"));
 				dto.setCreator_no(rs.getInt("creator_no"));
 				dto.setTitle(rs.getString("title"));
 				dto.setHits(rs.getInt("hits"));
@@ -108,11 +99,8 @@ public class NoticeDAO{
 		}
 		return list;
 	}
-
 	public int insertWrite(NoticeDTO dto) {
-		
 		int affected = 0;	// 적용된 행의갯수
-		
 		try {
 			
 			String sql = " INSERT INTO notify_board ( " 
@@ -120,10 +108,8 @@ public class NoticeDAO{
 					+ " category,title, detail,creator_no ) "
 					+ " VALUES (" 
 					+ " NOTIFY_BOARD_NO_SEQ.NEXTVAL, ?, ?, ?,?) ";
-			
 			psmt = con.prepareStatement(sql);
-			
-			psmt.setInt(1, dto.getCategory());
+			psmt.setString(1, dto.getCategory());
 			psmt.setString(2, dto.getTitle());
 			psmt.setString(3, dto.getDetail());
 			psmt.setInt(4, dto.getCreator_no());
@@ -131,97 +117,90 @@ public class NoticeDAO{
 			affected = psmt.executeUpdate();
 		} 
 		catch (Exception e) {
-			
 			e.printStackTrace();
 		}
 		return affected;
 	}
 	
 	// 공지사항 상세보기(view)
-	public NoticeDTO selectView(int no) {
+	public NoticeDTO selectView(String no) {
 		System.out.println("셀렉idx:"+no);
 		NoticeDTO dto = null;
-
-		String sql = "SELECT * FROM notify_board " + " WHERE no=?";
+		String sql="";
 		
 		try {
+			con = DBConnection.getConnection();
+			sql = "SELECT * FROM notify_board WHERE No=?";
 			psmt = con.prepareStatement(sql);
-			psmt.setInt(1, no);
+			psmt.setInt(1,Integer.valueOf(no));
 			rs = psmt.executeQuery();
 			
 			if (rs.next()) {
 				dto = new NoticeDTO();
-
 				dto.setNo(rs.getInt("no"));
 				dto.setCreated_at(rs.getTimestamp("created_at"));
-				dto.setCategory(rs.getInt("category"));
+				dto.setCategory(rs.getString("category"));
 				dto.setCreator_no(rs.getInt("creator_no"));
 				dto.setTitle(rs.getString("title"));
 				dto.setHits(rs.getInt("hits"));
 				dto.setDetail(rs.getString("detail"));
-
 			}
 		} 
 		catch (Exception e) {
-			
-			e.printStackTrace();
+			System.out.println("수정오류:"+e);
 		}
-
 		return dto;
 	}
-	
 	// 공지사항 게시물 수정하기
-	public int updateEdit(NoticeDTO dto) {
-
-		int x = -1;
-		
+	public boolean  updateEdit(NoticeDTO dto,String no) {
+		boolean isSuccess = false;
+		String sql="";
 		try {
-			String sql = " UPDATE notify_board SET " 
-					+ " title=?, detail=?, category=? " 
-					+ " WHERE no=? ";
-
-			psmt = con.prepareStatement(sql);
-			
-			psmt.setString(1, dto.getTitle());
-			psmt.setString(2, dto.getDetail());
-			psmt.setInt(3, dto.getCategory());
-			psmt.setInt(4, dto.getNo());
-		    psmt.executeUpdate();
-		    x =1;
+			con = DBConnection.getConnection();
+				sql = " UPDATE notify_board SET " 
+						+ " title=?, detail=? WHERE no=? ";
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1, dto.getTitle());
+				psmt.setString(2, dto.getDetail());
+				psmt.setString(3,no);
+				psmt.executeUpdate();
+				if(psmt.executeUpdate() == 1) {
+					isSuccess = true;
+			}
 		} 
 		catch (Exception e) {
-			
-			e.printStackTrace();
+			System.out.println("수정실패"+e);
 		}
-
-		return x;
+		System.out.println(isSuccess);
+		return isSuccess;
 	}
-	
 	// 게시물 삭제하기
-	public int delete(String idx) {
-		
-		String[] checkDel = idx.split(",");
-		
-		int affected = 0;
+	public boolean delete(String no) {
+		boolean isSuccess = false;
 		
 		try {
-			
-			String sql = "DELETE FROM notify_board WHERE no=?";
-
+			String sql = "DELETE FROM notify_board WHERE NO=?";
+			con = DBConnection.getConnection();
 			psmt = con.prepareStatement(sql);
-			psmt.setString(1, checkDel[0]);
-
-			affected = psmt.executeUpdate();
-			
-		} 
-		catch (Exception e) {
-			
-			System.out.println("delete중 예외발생");
-			e.printStackTrace();
+			psmt.setString(1, no);
+		    psmt.executeUpdate();
+		    
+		    if(psmt.executeUpdate() == 0) {
+				isSuccess = true;
+			}
+		} catch (Exception e) {
+			System.out.println("delete중 예외발생"+e);
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(psmt != null) psmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
 		}
-
-		return affected;
 	}
-	
+		System.out.println(isSuccess);
+		return isSuccess;
+	}
 }
 	

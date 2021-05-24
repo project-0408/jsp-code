@@ -5,12 +5,11 @@
     pageEncoding="UTF-8"%>
 
 <%
-	int no = Integer.parseInt(request.getParameter("no"));
-
-	NoticeDAO dao = NoticeDAO.getInstance();
-	NoticeDTO dto = dao.selectView(no);
-	
-
+		request.setCharacterEncoding("utf-8");
+		NoticeDAO dao =NoticeDAO.getInstance();
+		String no = request.getParameter("no");
+		NoticeDTO dto =dao.selectView(no);
+		System.out.println("값:"+no);
 %>
 
 <!DOCTYPE html>
@@ -18,6 +17,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../css/notice.css" type="text/css" />
 </head>
 <script type="text/javascript">
 //입력 자료 검사
@@ -27,31 +27,40 @@ function check() {
 		modify_form.title.focus();
 	} else if (modify_form.detail.value == "") {
 		alert("내용을 입력하세요");
-		modify_form.cont.focus();
+		modify_form.detail.focus();
 	} else
 		modify_form.submit();
 }
 </script>
 <body>
-	<h2 style="text-align:center;"> *** 수정하기 *** </h2>
-	<form name="modify_form" method="post" action = "notice_modify_action.jsp?no=<%=no%>">
-		<input type="hidden" name = "no" value = "<%= dto.getNo()%>"/>
-		<table border="1">
-			<tr>
-				<td align="center">제 목</td>
-				<td><input name="title" size="50" value="<%=dto.getTitle()%>"></td>
-			</tr>
-			<tr>
-				<td align="center">내 용</td>
-				<td><textarea name="detail" cols="50" rows="10"><%=dto.getDetail()%></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center" height="30">
-					<input type="button" value="작  성" onClick="check()">&nbsp;
-					<input type="button" value="목  록" onClick="location.href='notice_list.jsp'">
-				</td>
-			</tr>
-		</table>
-	</form>
+<div class="total">
+		 <%@ include file="/header.jsp" %>
+		 <h2 style="text-align:center;"> < 글 수정 > </h2>
+		<form name="modify_form" method="post" action = "notice_modify_action.jsp?no=<%=no%>">
+			<div class = "section">
+			<div class="detail">
+				<ul>
+					<h3>
+						제목 &nbsp;&nbsp;&nbsp;<input type="text" name="title" value="<%=dto.getTitle()%>">
+						<p></p>
+						<br>
+						<p></p>
+						<br>
+					</h3>
+				</ul>
+					<ul>
+					<h3>상세 내용</h3>
+					<textarea cols="80" rows="10" name="detail"><%=dto.getDetail()%></textarea>
+					</ul>
+			<div class="btn">
+				<button type="submit" onclick="check()">수정하기</button>
+				<span><button type="reset">다시쓰기</button></span>
+			</div>
+			</div>
+			</div>
+		</form>
+		<div class="clear"></div>
+		 <%@ include file="/footer.jsp" %>
+	</div>
 </body>
 </html>

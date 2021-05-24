@@ -1,0 +1,7 @@
+WebContent/META-INF/context.xml
+desktop.ini
+.DS_Store
+.project
+.settings/
+
+.classpath

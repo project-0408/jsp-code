@@ -12,6 +12,7 @@
       user.setCreated_at(new Timestamp(System.currentTimeMillis()));
       UserDAO manager = UserDAO.getInstance();
       if(manager.register(user)){
+     
 %>
 	<script>
 		alert("회원 가입을 축하드립니다! 🎉🎉🎉\n로그인해주세요!");

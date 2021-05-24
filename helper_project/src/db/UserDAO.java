@@ -6,6 +6,19 @@ import java.sql.ResultSet;
 
 import db.userBeans.UserBean;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import db.userBeans.UserBean;
+import db.DBConnection;
+
 public class UserDAO {
 	private static UserDAO instance = new UserDAO();
 

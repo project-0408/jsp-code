@@ -26,13 +26,13 @@
 			<div class = "section">
 				<h1>구인 게시글 작성</h1>
 				<div class="date">
+				<hr>
 					<ul>
 						<h3>
 							제목 &nbsp;&nbsp;&nbsp;
 							<input type="text" name="job_title" class ="title">
 						</h3>
 					</ul>
-				<hr>
 					<ul>
 						<h3>공고기간</h3>
 					</ul>
@@ -75,11 +75,11 @@
 					<ul>
 						<h4>
 							<!-- 주소 입력 -->
-							<script type="text/javascript" src="<%=p_helper_path %>/util/juso3.js" ></script>
+							<script type="text/javascript" src="<%=p_helper_path %>/util/juso2.js" ></script>
 							도로명 주소 
 							<input  type="text"  style="width:auto;" id="location_addr" name="location_addr" readonly/>
-							 <input type="button" onClick="goPopup();" value="주소 찾기"/>
-							 상세 주소
+							<input type="button" onClick="goPopup();" value="주소 찾기"/><br>
+							상세 주소&nbsp;&nbsp;&nbsp;
 							 <input type="text" name="location_detail">
 							 <input type="hidden" name="location_first_name" />
 							<input type="hidden" name="location_second_name" />
@@ -94,7 +94,7 @@
 					</ul>
 					<ul>
 						<h4>상세</h4>
-						<textarea cols="60" rows="10" name="job_detail"></textarea>
+						<textarea cols="100" rows="10" name="job_detail"></textarea>
 					</ul>
 				</div>
 				<div class="btn">

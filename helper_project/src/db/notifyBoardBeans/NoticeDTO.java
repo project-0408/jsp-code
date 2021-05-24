@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 public class NoticeDTO {
 	private int no;
 	private Timestamp created_at;
-	private int category;
+	private String category;
 	private int creator_no;
 	private String title;
 	private int hits;
@@ -36,10 +36,11 @@ public class NoticeDTO {
 	public void setCreated_at(Timestamp created_at) {
 		this.created_at = created_at;
 	}
-	public int getCategory() {
+
+	public String getCategory() {
 		return category;
 	}
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 	public int getCreator_no() {

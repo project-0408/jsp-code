@@ -18,15 +18,10 @@ String p_helper_path = request.getContextPath();
 	<div class="wrap">
 		<div class="intro_bg">
 			<div class="header">
-				<div class="searchArea">
-					<form>
-						<input type="search" placeholder="search"> <span>검색</span>
-					</form>
-				</div>
 				<ul class = "nav">
 					<li><a href="main.jsp">HOME</a></li>
 					<li><a href="job_board/job_main.jsp">구인게시판</a></li>
-					<li><a href="shop/shop.jsp">포인트상점</a></li>
+					<li><a href="review_board/review_list.jsp">후기게시판</a></li>
 						<li><%
         				if(session.getAttribute("id")==null){
         				%>
@@ -106,7 +101,7 @@ String p_helper_path = request.getContextPath();
 				<div class="contents1">오늘의 포인트 왕</div>
 				<div class="result">
 <%
-	sql = "SELECT NAME FROM USERS WHERE POINT = (SELECT MAX(POINT) FROM USERS)";
+	sql = "SELECT NICK FROM USERS WHERE POINT = (SELECT MAX(POINT) FROM USERS)";
 	stmt = conn.createStatement();
 	rs = stmt.executeQuery(sql);
 	while(rs.next()){
@@ -152,7 +147,7 @@ String p_helper_path = request.getContextPath();
 				</div>
 				<div class="contents1_bold">구인 게시판</div>
 				<div class="contents2">내가 잘하는 일로 이웃도 돕고 돈도 벌고 이석이조!</div>
-				<div class="more"><a href="jop_board/board_list.jsp">MORE</a></div>
+				<div class="more"><a href="job_board/job_main.jsp">MORE</a></div>
 			</li>
 
 			<li>
@@ -168,12 +163,13 @@ String p_helper_path = request.getContextPath();
 
 			<li>
 				<div class="icon_img">
-					<img src="./images/shopping11.png">
+					<img src="./images/notice.png">
 				</div>
-				<div class="contents1_bold">포인트 마켓</div>
-				<div class="contents2">열심히 활동한 주민은 포인트로 다양한 기프티콘을 구매하실 수 있습니다
+				<div class="contents1_bold">공지사항</div>
+				<div class="contents2">
+				다양한 이벤트 소식과 중요한 공지를 확인해보세요!
 				</div>
-				<div class="more"><a href="shop/shop.jsp">MORE</a></div>
+				<div class="more"><a href="notice_board/notice_list.jsp?">MORE</a></div>
 			</li>
 		</ul>
 	</div>
