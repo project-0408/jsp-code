@@ -39,7 +39,7 @@
 				 <td width="100">작성자</td>
 				<td width="200">관리자 </td>
 				<td width="100">작성일</td>
-				<td width="200"><%= dto.getCreated_at() %> </td>
+				<td width="200"><%= dto.getCreated_at()%> </td>
 			</tr>
 			<tr >
 				<td width="100" align="center" >글제목</td>
@@ -52,18 +52,26 @@
 			<tr>
 				<td colspan="4" align="right" height="50" >
                <div  class="btn">
-			<%
+				<%
+			boolean check = false;
 			String id = (String)session.getAttribute("id");
-			boolean check = id.startsWith("ADMIN_");
+			if(id==null){
+				check = false;
+			}
+			else if(id!=null){
+			check = id.startsWith("ADMIN_");
+			}
 				if(check==true){
 	            %>
-            
                <button type="submit" onclick="location.href='notice_modify_form.jsp?no=<%=no %>'">수정하기</button>
                <button type="submit" onclick="location.href='notice_delete.jsp?no=<%=no %>'" >삭제하기</button>
 	            <%
+			}else if(check==false){
+			%>
+			<%
 			}
 			%>
-               <button type="submit" onclick="location.href='notice_list.jsp'">글목록</button>
+               <button type="button" onclick="location.href='notice_list.jsp'">글목록</button>
 				</div>
 				</td>
 			</tr>

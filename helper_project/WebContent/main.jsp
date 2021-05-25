@@ -112,11 +112,11 @@ String p_helper_path = request.getContextPath();
 %>				 님</div>
 			</div>
 		</li>
-		<li>
+<%-- 		<li>
 			<div>
 				<div class="contents1">오늘 방문자 수</div>
 				<div class="result">
-<%-- <%
+<%
 	stmt = conn.createStatement();
 	sql = "UPDATE HITS SET BOARD_HITS = BOARD_HITS + 1 WHERE NO = 1";
 	stmt.executeUpdate(sql);
@@ -128,10 +128,10 @@ String p_helper_path = request.getContextPath();
 				<%=rs.getInt(1) %>
 		<%
 	}
-%> --%>
+%>
 				</div>
 			</div>
-		</li>
+		</li> --%>
 	</ul>
 	<!-- amount end -->
 

@@ -81,9 +81,20 @@
               					%>기타<%
               				}
               %></h3><br>
-              <h3>인원수 : <%=jp.getJob_num_of_people() %></h3><br>
+              <table>
+              	<tr>
+             		<td><h3>모집 인원 : </h3></td>
+             		<td><h3><%=jp.getJob_num_of_people()%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></td>
+             		<td><h3 id = "state"></h3></td>
+              	</tr>
+              	<tr>
+              		<td><h3>승인 인원 :</h3></td>
+              		<td><h3 id = "count"></h3></td>
+              	</tr>
+              </table>
               <h3>PAY : <%=jp.getJob_pay() %></h3>
             </div>
+              
           </ul>
           <ul>
             <div class="content">
@@ -97,17 +108,29 @@
           <%   
           if(user_no == jp.getCreator_no()){
           %>
-          <button type="submit" >수정하기</button>
+          <button type="submit">수정하기</button>
           <button type="button" onclick="removeCheck()">삭제하기</button>
+          <button type="button" onclick="#">지원현황</button>
           <%
           } else {
           %>
-          	<button type="button" onclick="">신청하기</button>
+          	<button type="button" onclick="change()" id = "apply">신청하기</button>
           <%
           }
           %>
-
           <script>
+          function change() {
+        	  		if(document.getElementById("apply").innerHTML=="신청하기"){
+        		 		 if(confirm("정말로 신청하시겠습니까?") == true){
+        		 			const target = document.getElementById('apply');
+        			  		target.disabled = true;
+        			  		document.getElementById("apply").innerHTML="신청중";
+        			  		document.getElementById("state").innerHTML="지원중";
+        		  }else{
+        			  btn.disabled = false;
+        		  }
+        	  }
+        	  }
           function removeCheck(){
         	  if(confirm("정말 삭제하겠습니까?") == true){
         		  document.location.href="<%=p_helper_path%>/job_board/job_delete.jsp?no=<%=job_post_no%>"

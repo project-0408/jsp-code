@@ -1,3 +1,4 @@
+<%@page import="db.jobBoardBeans.JobPostBean"%>
 <%@page import="db.jobBoardBeans.JobPostSubBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="db.JobPostDAO"%>
@@ -13,6 +14,7 @@
         JobPostDAO jpDAO = JobPostDAO.getInstance();
         jpDAO.setCount(location_first, location_second);
         ArrayList<JobPostSubBean> jpsl = jpDAO.getList(location_first, location_second);
+        
         %>
 
         <from>
@@ -22,7 +24,6 @@
             for(int i=0; i<jpsl.size(); i++){
         %>
             <tr>
-                <td><input type="checkbox" value=""></td>
                 <td id="job_location"><%=jpsl.get(i).getLocation() %></td>
                 <td id="job_title"><a href="job_detail.jsp?no=<%=jpsl.get(i).getNo()%>"><%=jpsl.get(i).getJob_titile() %></a></td>
                 <td><%=jpsl.get(i).getJob_pay() %></td>

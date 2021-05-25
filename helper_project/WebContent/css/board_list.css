@@ -69,6 +69,7 @@
 }
 
 .second{
+	margin-top:100px;
     flex: 1;
     margin-left: 5%;
     box-sizing: border-box;
@@ -84,13 +85,24 @@ ul {
 	height: 2rem;
 }
 
-button {
+.second button {
+	float:right;
 	margin: 10px;
 	width: 10rem;
 	height: 2.5rem;
 	border: 1px;
 	border-radius: 12px;
 	background-color: #FFCC79;
+}
+#job_board button{
+	width:50px;
+    background-color: blue;
+    border: none;
+    color:#fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
 }
 
 span {
@@ -107,7 +119,7 @@ textarea {
 
 /* ★leni★ serch -> searchBox 로 이름 변경 */
 .searchBox {
-	border: 1px solid #3E3DB0;
+	margin-top:80px;
 }
 
 .botton {
@@ -154,11 +166,6 @@ textarea {
 	float: right;
 	margin-right: 30px;
 }
-
-.button {
-	float: right;
-}
-
 .space {
 	height: 100px;
 }

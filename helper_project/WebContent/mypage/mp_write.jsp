@@ -1,3 +1,9 @@
+<%@page import="db.jobBoardBeans.JobPostSubBean"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="db.ReviewBoardDAO"%>
+<%@page import="db.reviewBeans.ReviewPostBean"%>
+<%@page import="db.reviewBeans.ReviewBoard"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +17,20 @@
 <body>
 <div class="total">
     <%@ include file="/header.jsp" %>
+	  <%
+	 	request.setCharacterEncoding("UTF-8");
+  		String user_no = (String)session.getAttribute("no");
+  		
+	  	ReviewPostBean rpb = new ReviewPostBean();
+
+    	ReviewBoardDAO rbDAO = ReviewBoardDAO.getInstance();
+    	
+		int userNo = Integer.valueOf(user_no);
+		
+    	ArrayList<ReviewBoard> mrblist = rbDAO.getMyReviewList(userNo);
+		ArrayList<JobPostSubBean> mjblist = rbDAO.getMyJobList(userNo); 
+	  	
+	  %>
 	<section>
 		<form>
 			<div class="top"></div>
@@ -36,42 +56,35 @@
 				<h3>구인 게시판</h3>
 				<hr>
 					<table>
+					<%
+		    		if(mjblist != null){
+		    			for(int i=0; i<mjblist.size(); i++){
+	   				%>
 						<tr style="height: 50px;">
-							<td>날짜</td>
-							<td style="width: 500px;">글 제목1</td>
-							<th colspan="2"><input type="button" value="수정" onclick="location.href='../job_board/board_writer_fix.jsp'"></th>
+							<td><%=mjblist.get(i).getCreated_at() %></td>
+							<td style="width: 500px;"><a href="<%=p_helper_path%>/job_board/job_detail.jsp?no=<%=mjblist.get(i).getNo()%>"><%=mjblist.get(i).getJob_titile() %></a></td>
 						</tr>
-						<tr style="height: 50px;">
-							<td>날짜</td>
-							<td style="width: 500px;">글 제목1</td>
-							<th colspan="2"><input type="button" value="수정" onclick="location.href='../job_board/board_writer_fix.jsp'"></th>
-						</tr>
-						<tr style="height: 50px;">
-							<td>날짜</td>
-							<td style="width: 500px;">글 제목1</td>
-							<th colspan="2"><input type="button" value="수정" onclick="location.href='../job_board/board_writer_fix.jsp'"></th>
-						</tr>
+					<%
+	    				}
+		    		}
+		    		%>
 					</table>
 					<div class = "clear"></div>
 					<h3>후기 게시판</h3>
 					<hr>
 					<table>
+					<%
+		    		if(mrblist != null){
+		    			for(int i=0; i<mrblist.size(); i++){
+	   				%>
 						<tr style="height: 50px;">
-							<td>날짜</td>
-							<td style="width: 500px;">글 제목1</td>
-							<th colspan="2"><input type="button" value="수정" onclick="location.href='../review/review_writer_fix.jsp'"></th>
+							<td><%=mrblist.get(i).getCreatedat() %></td>
+							<td style="width: 500px;"><a href="<%=p_helper_path%>/review_board/review_reading.jsp?rno=<%=mrblist.get(i).getNo()%>"><%=mrblist.get(i).getTitle() %></a></td>
 						</tr>
-						<tr style="height: 50px;">
-							<td>날짜</td>
-							<td style="width: 500px;">글 제목2</td>
-							<th><input type="button"  value="수정" onclick="location.href='../review/review_writer_fix.jsp'"></th>
-						</tr>
-						<tr style="height: 50px;">
-							<td>날짜</td>
-							<td style="width: 500px;">글 제목3</td>
-							<th><input type="button" value="수정" onclick="location.href='../review/review_writer_fix.jsp'"></th>
-						
-						</tr>
+					<%
+	    				}
+		    		}
+		    		%>
 					</table>
 				</div>
 			</div>
@@ -82,3 +95,4 @@
 </div>
 </body>
 </html>
+<script type="text/javascript" src="resources/js/notice-write.js"></script>

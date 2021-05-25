@@ -30,7 +30,6 @@ System.out.println(jp.getJob_detail()); */
 <title>구인 게시글 수정</title>
 </head>
 <body>
-
 	<div class="total">
 		<form action="job_write_fix_ok.jsp?no=<%=job_post_no %>" method="POST" name="form">
 			<div class = "section">

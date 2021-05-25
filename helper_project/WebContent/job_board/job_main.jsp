@@ -25,11 +25,11 @@
 				
 				<div class="first">
 					<h1>구인 게시판</h1>
-					<button type="button" onclick="location.href='job_write.jsp'">글쓰기</button>
 					<jsp:include page="job_search_bar.jsp"/>
 				</div>
 				<div class="second">
 					<jsp:include page="job_list.jsp"/>
+					<button type="button" onclick="location.href='job_write.jsp'">글쓰기</button>
 				</div>
 				
 		<%--         ★leni★ 두 개 차이점이 존재 할 듯 확인 해 봐야 한다.

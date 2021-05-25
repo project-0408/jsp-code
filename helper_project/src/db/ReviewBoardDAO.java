@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import db.jobBoardBeans.JobPostSubBean;
 import db.reviewBeans.ReviewBoard;
 import db.reviewBeans.ReviewPostBean;
 
@@ -125,7 +126,7 @@ public class ReviewBoardDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			String sql="SELECT NO, TITLE, CREATED_AT, HITS , CREATOR_NO, DETAIL, JOB_POST_NO FROM REVIEW_BOARD";
+			String sql="SELECT NO, TITLE, CREATED_AT, HITS , CREATOR_NO, DETAIL, JOB_POST_NO FROM REVIEW_BOARD ORDER BY CREATED_AT DESC";
 			con=DBConnection.getConnection();
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -140,12 +141,6 @@ public class ReviewBoardDAO {
 				rb.setJob_post_no(rs.getInt("JOB_POST_NO"));
 				rblist.add(rb);
 			}
-//            for(int i = 0 ; i <rblist.size() ; i++){
-//
-//                ReviewBoard rb = rblist.get(i);
-//
-//                System.out.println(rb.getTitle() + "\t" + rb.getHits() + "\t" + rb.getCreatedat() + "\t");
-//         }
 		} catch (Exception e) {
 			System.out.println("목록실패 : " + e);
 		}finally {
@@ -159,5 +154,75 @@ public class ReviewBoardDAO {
 		}
 		return rblist;
 	}
-	
+	public ArrayList<ReviewBoard> getMyReviewList(int userNo){
+		ArrayList<ReviewBoard> rblist = new ArrayList<ReviewBoard>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			String sql="SELECT * FROM(SELECT NO, TITLE, CREATED_AT, HITS , CREATOR_NO, DETAIL, JOB_POST_NO FROM REVIEW_BOARD WHERE CREATOR_NO = ? ORDER BY CREATED_AT DESC) WHERE ROWNUM <= 3";
+			con=DBConnection.getConnection();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rs=pstmt.executeQuery();
+
+			while (rs.next()) {
+				ReviewBoard rb = new ReviewBoard();
+				rb.setNo(rs.getInt("NO"));
+				rb.setTitle(rs.getString("TITLE"));
+				rb.setCreatedat(rs.getTimestamp("CREATED_AT"));
+				rb.setHits(rs.getInt("HITS"));
+				rb.setCreator_no(rs.getInt("CREATOR_NO"));
+				rb.setReview(rs.getString("DETAIL"));
+				rb.setJob_post_no(rs.getInt("JOB_POST_NO"));
+				rblist.add(rb);
+			}
+		} catch (Exception e) {
+			System.out.println("목록실패 : " + e);
+		}finally {
+			try {
+				if(con!=null)con.close();
+				if(pstmt!=null)pstmt.close();
+				if(rs!=null)rs.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		return rblist;
+	}
+	public ArrayList<JobPostSubBean> getMyJobList(int userNo){
+		ArrayList<JobPostSubBean> rblist = new ArrayList<JobPostSubBean>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			String sql="SELECT * FROM(SELECT NO, TITLE, CREATED_AT , CREATOR_NO FROM JOB_BOARD WHERE CREATOR_NO = ? ORDER BY CREATED_AT DESC) WHERE ROWNUM <= 3";
+			con=DBConnection.getConnection();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rs=pstmt.executeQuery();
+
+			while (rs.next()) {
+				JobPostSubBean js = new JobPostSubBean();
+				js.setNo(rs.getInt("NO"));
+				js.setJob_titile(rs.getString("TITLE"));
+				js.setCreated_at(rs.getString("CREATED_AT"));
+				js.setCreator_no(rs.getInt("CREATOR_NO"));
+				rblist.add(js);
+			}
+		} catch (Exception e) {
+			System.out.println("목록실패 : " + e);
+		}finally {
+			try {
+				if(con!=null)con.close();
+				if(pstmt!=null)pstmt.close();
+				if(rs!=null)rs.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		return rblist;
+	}
 }

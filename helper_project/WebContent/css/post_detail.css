@@ -78,6 +78,9 @@ textarea {
     padding:30px;
     margin-top: 50px;
   }
+  #state{
+  color:#ff8080;
+  }
  #f_img{
       width: 100px;
       height: 100px;

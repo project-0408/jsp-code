@@ -37,22 +37,10 @@
 	  	int hits;
 	  %>
 	  <%@ include file="/header.jsp" %>
-	  <form action="">
+	  <form>
 	    <h1>후기 게시판</h1>
 	    <div class="section">
-	    <div class="search">
-	    		<%
-	    	if(session.getAttribute("id") == null){
-	    		%>
-	    		<a href="/project_helper/member/login_check.jsp"><h4>글쓰기</h4></a>
-	    		<%
-	    	}else{
-	    		%>
-	    		<a href="review_writer.jsp"><h4>글쓰기</h4></a>
-	    		<%
-	    	}
-	    		%>
-	    	<ul>
+	    	<!-- <ul>
 	    		<h3>
 	    			검색 <input type="text" value=""> &nbsp;&nbsp;
 	    			<select>
@@ -67,7 +55,7 @@
 	    			  <option value="local">최신글</option>
 	    			</select>&nbsp;&nbsp;
 	    		</h3>
-	    	</ul>
+	    	</ul> -->
 	    </div>
 	    	<div class="list" style="overflow: auto; height: 400px">
 	    		<table>
@@ -78,8 +66,10 @@
    						<tr>
    							<td style="width: 500px;" id="review_no"><a href="review_reading.jsp?rno=<%=rplist.get(i).getNo()%>"><%=rplist.get(i).getTitle() %></a></td>
    							<td class="time"><%=rplist.get(i).getCreatedat() %></td>
-   							<td class="hit">조회수 : <%=rplist.get(i).getHits() %></td>
-   							<td><input type="button" value="신고"></td>
+   							
+   					<%-- 		<td class="hit">조회수 : <%=rplist.get(i).getHits() %></td>
+   							<td><input type="button" value="신고"></td> --%>
+   							
    						</tr>
    				<%
 	    			}
@@ -87,10 +77,28 @@
 	    		%>
 	    		</table>
 	    	</div>
+	    	
+	    		<%
+	    	if(session.getAttribute("id") == null){
+	    		%>
+	    		<div class="button">
+	    		<button type="button" onclick="location.href='/<%=p_helper_path%>/member/login_check.jsp'">후기작성</button>
+	    		</div>
+	    		<% 
+	    	}else{
+	    		%>
+	    		<div class="button">
+	    		<button type="button" onclick="location.href='review_writer.jsp'">후기작성</button>
+	    		</div>
+	    		<%
+	    	}
+	    		%>
+	    	
 	    </div>
-	    <div class="button">
+	    
+	 <!--    <div class="button">
 	    	<button type="submit" onclick="location.href='main.jsp'">뒤로가기</button>
-	    </div>
+	    </div> -->
 	    <div class="space"></div>
 	  </form>
 	  <%@ include file="/footer.jsp" %>

@@ -62,7 +62,7 @@
 								<option value='14'>요양보호사</option>
 								<option value='15'>대리티켓구매</option>
 								<option value='16'>직구대행</option>
-								<option value='3'>기타</option>
+								<option value='17'>기타</option>
 							</select>
 						</h4>
 					</ul>
