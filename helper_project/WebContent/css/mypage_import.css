@@ -55,13 +55,14 @@ form {
 }
 .section {
   margin-top: 10px;
+  display:flex;
 }
 .mainbox {
 	width:auto;
 	margin: 40px;
 	padding: 30px;
     font-family: 'S-CoreDream-4Regular',sans-serif;
-    display: inline-block; 
+   flex:9;
 }
 
 .mainbox table tr td{
@@ -71,9 +72,9 @@ form {
 .leftbox {
 	margin: 20px;
 	padding: 20px;
+	flex:1;
 	text-align : center;
 	display: inline-block; 
-	border: none;
 }
 .leftbox h3{
 	width:130px;
@@ -132,3 +133,4 @@ legend {
     flex:9;
     color: #fff;
   }
+  

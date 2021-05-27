@@ -12,8 +12,7 @@
 // 아이디 중복 여부를 판단
 function openConfirmid(inputKey, inputValue)
 {
-	console.log(inputKey);
-	console.log(inputValue);
+
       // 아이디를 입력했는지 검사
       if(inputValue == "")
       {
@@ -30,6 +29,16 @@ function openConfirmid(inputKey, inputValue)
             "toolbar = no, location = no, status = no," +
             "menubar = no, scrollbars = no, resizable = no," +
             "width = 300, height = 200");
+}
+
+function openConfirmCallBack(key, value){
+	if(key == "id"){
+		document.form.id.value = value;
+	}
+	else if (key == "nick"){
+		document.form.nick.value = value;
+	}
+	
 }
 </script>
 </head>

@@ -1,4 +1,3 @@
-<%@page import="db.reviewBeans.ReviewBoard"%>
 <%@page import="db.ReviewBoardDAO"%>
 <%@page import="db.reviewBeans.ReviewPostBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -26,12 +25,12 @@
 	<div class="total">
 	  <%
 	  	request.setCharacterEncoding("UTF-8");
-	  	ReviewPostBean rpb = new ReviewPostBean();
+	  
 	  	String review_no = request.getParameter("rno");
+	  	
 	  	ReviewBoardDAO rbDAO = ReviewBoardDAO.getInstance();
+	  	ReviewPostBean rpb = new ReviewPostBean();
 	  	rpb = rbDAO.getPost(review_no);
-	  	ReviewBoard rb = new ReviewBoard();
-	  	rb.getNo();
 	  	
 	  %>
 	  <%@ include file="/header.jsp" %>
@@ -47,8 +46,8 @@
 	      <ul>
 	      	<div class="list">
 	      		<h3>지원 했던 공고&nbsp;&nbsp;</h3>
-	      		<a href="job_detail">지원했던 공고제목</a>
-	      		<div class="time">21/04/27</div>
+	      		<div class="time"><%=rpb.getJob_day() %></div>
+	      		<a href="<%=p_helper_path %>/job_board/job_detail.jsp?no=<%=rpb.getJob_post() %>"><%=rpb.getJob_title() %></a>
 	      	</div>
 	      </ul>
 	      <ul>

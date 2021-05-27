@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import db.jobBoardBeans.JobPostSubBean;
-import db.reviewBeans.ReviewBoard;
+//import db.reviewBeans.ReviewBoard;
 import db.reviewBeans.ReviewPostBean;
 
 public class ReviewBoardDAO {
@@ -77,7 +77,12 @@ public class ReviewBoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM REVIEW_BOARD WHERE NO = ?";
+		String sql = "SELECT R.* ,"
+				+ " JB.TITLE,"
+				+ " TO_CHAR(JB.TIME_DAY, 'yyyy-MM-dd')"
+				+ " FROM REVIEW_BOARD R"
+				+ " JOIN JOB_BOARD JB ON R.JOB_POST_NO = JB.NO"
+				+ " WHERE R.NO = ?";
 		ReviewPostBean rpb = null;
 		try {
 			con=DBConnection.getConnection();
@@ -94,6 +99,8 @@ public class ReviewBoardDAO {
 				rpb.setReview_score(rs.getInt(6));
 				rpb.setReview_detail(rs.getString(7));
 				rpb.setJob_post(rs.getInt(8));
+				rpb.setJob_title(rs.getString(9));
+				rpb.setJob_day(rs.getString(10));
 //				rpb.setNo(rs.getInt("NO"));
 //				rpb.setCreated_at(rs.getTimestamp("CREATED_AT"));
 //				rpb.setCreator(rs.getInt("CREATOR_NO"));
@@ -120,8 +127,8 @@ public class ReviewBoardDAO {
 	
 	
 	
-	public ArrayList<ReviewBoard> getList(){
-		ArrayList<ReviewBoard> rblist = new ArrayList<ReviewBoard>();
+	public ArrayList<ReviewPostBean> getList(){
+		ArrayList<ReviewPostBean> rblist = new ArrayList<ReviewPostBean>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -131,14 +138,14 @@ public class ReviewBoardDAO {
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			while (rs.next()) {
-				ReviewBoard rb = new ReviewBoard();
+				ReviewPostBean rb = new ReviewPostBean();
 				rb.setNo(rs.getInt("NO"));
-				rb.setTitle(rs.getString("TITLE"));
-				rb.setCreatedat(rs.getTimestamp("CREATED_AT"));
-				rb.setHits(rs.getInt("HITS"));
-				rb.setCreator_no(rs.getInt("CREATOR_NO"));
-				rb.setReview(rs.getString("DETAIL"));
-				rb.setJob_post_no(rs.getInt("JOB_POST_NO"));
+				rb.setReview_titile(rs.getString("TITLE"));
+				rb.setCreated_at(rs.getTimestamp("CREATED_AT"));
+				rb.setReview_hits(rs.getInt("HITS"));
+				rb.setCreator(rs.getInt("CREATOR_NO"));
+				rb.setReview_detail(rs.getString("DETAIL"));
+				rb.setJob_post(rs.getInt("JOB_POST_NO"));
 				rblist.add(rb);
 			}
 		} catch (Exception e) {
@@ -154,8 +161,8 @@ public class ReviewBoardDAO {
 		}
 		return rblist;
 	}
-	public ArrayList<ReviewBoard> getMyReviewList(int userNo){
-		ArrayList<ReviewBoard> rblist = new ArrayList<ReviewBoard>();
+	public ArrayList<ReviewPostBean> getMyReviewList(int userNo){
+		ArrayList<ReviewPostBean> rblist = new ArrayList<ReviewPostBean>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -168,14 +175,14 @@ public class ReviewBoardDAO {
 			rs=pstmt.executeQuery();
 
 			while (rs.next()) {
-				ReviewBoard rb = new ReviewBoard();
+				ReviewPostBean rb = new ReviewPostBean();
 				rb.setNo(rs.getInt("NO"));
-				rb.setTitle(rs.getString("TITLE"));
-				rb.setCreatedat(rs.getTimestamp("CREATED_AT"));
-				rb.setHits(rs.getInt("HITS"));
-				rb.setCreator_no(rs.getInt("CREATOR_NO"));
-				rb.setReview(rs.getString("DETAIL"));
-				rb.setJob_post_no(rs.getInt("JOB_POST_NO"));
+				rb.setReview_titile(rs.getString("TITLE"));
+				rb.setCreated_at(rs.getTimestamp("CREATED_AT"));
+				rb.setReview_hits(rs.getInt("HITS"));
+				rb.setCreator(rs.getInt("CREATOR_NO"));
+				rb.setReview_detail(rs.getString("DETAIL"));
+				rb.setJob_post(rs.getInt("JOB_POST_NO"));
 				rblist.add(rb);
 			}
 		} catch (Exception e) {

@@ -386,4 +386,56 @@ public class UserDAO {
 
 		return b;
 	}
+	public UserBean getN_user(int no) {//�쉶�썝�젙蹂� 遺덈윭�삤湲�
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="SELECT * FROM GET_USER_INFO WHERE NO = ?";
+		UserBean user = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				user = new UserBean();
+				user.setNo(rs.getInt("NO"));
+				user.setName(rs.getString("NAME"));
+				user.setNick(rs.getString("NICK"));
+				user.setId(rs.getString("ID"));
+				user.setPw(rs.getString("PW"));
+				user.setGender(rs.getInt("GENDER"));
+				user.setBirth_yy(rs.getInt("BIRTH_YY"));
+				user.setBirth_mm(rs.getInt("BIRTH_MM"));
+				user.setBirth_dd(rs.getInt("BIRTH_DD"));
+				user.setEmail(rs.getString("EMAIL"));
+				user.setPoint(rs.getInt("POINT"));
+				user.setGrade(rs.getString("GRADE"));
+				user.setLocation_first_name(rs.getString("LOCATION_FRIST_NAME"));
+				user.setLocation_second_name(rs.getString("LOCATION_SECOND_NAME"));
+				user.setLocation_addr(rs.getString("LOCATION_ADDR"));
+				user.setLocation_detail(rs.getString("LOCATION_DETAIL"));
+				user.setCreated_at(rs.getTimestamp("CREATED_AT"));
+				user.setCountry_code(rs.getInt("COUNTRY_CODE"));	
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return user;
+	}
 }

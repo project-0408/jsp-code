@@ -48,7 +48,14 @@
 <tr>
       <td align = "center"><p>
             입력하신 <%=c_value %>는 사용하실 수 있는 <%=key.toUpperCase() %>입니다.
-            <input type = "button" value = "닫기" onclick = "window.close()">
+            <script>
+            	function closeConfirmid(){
+            		opener.openConfirmCallBack("<%=key%>", "<%=c_value%>");
+            		window.close();
+            	}
+            </script>
+            <input type = "button" value = "사용하기" onclick = "closeConfirmid()">
+            <!-- <input type = "button" value = "닫기" onclick = "window.close()"> -->
       </td>
 </tr>
 </table>

@@ -136,20 +136,33 @@ public class JobPostDAO {
 		return jpl;
 	}
 
-	public JobPostBean getPost(String job_post_no){
+//	public JobPostBean getPost(String job_post_no){
+	public JobPostBean getPost(int user_no, String job_post_no){
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT * FROM GET_POST WHERE JOB_NO = ?";
+//		String query = "SELECT * FROM GET_POST WHERE JOB_NO = ?";
+		String query = "SELECT GET_POST.*,"
+				+ " GET_VOLUNTEER_STATE(?, ?) AS \"MY_STATE\","
+				+ " GET_WORKER_COUNT(?)       AS \"WORKER_COUNT\""
+				+ " FROM GET_POST"
+				+ " WHERE JOB_NO = ?";
 		
 		JobPostBean jp = null;
 		
 		try {
 			con = DBConnection.getConnection();
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, Integer.valueOf(job_post_no));
+//			pstmt.setInt(1, Integer.valueOf(job_post_no));
+			
+			int post_no = Integer.valueOf(job_post_no);
+			pstmt.setInt(1, user_no);
+			pstmt.setInt(2, post_no);
+			pstmt.setInt(3, post_no);
+			pstmt.setInt(4, post_no);
+			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -175,17 +188,9 @@ public class JobPostDAO {
 				jp.setJob_pay(rs.getInt("JOB_PAY"));				
 				jp.setJob_detail(rs.getString("JOB_DETAIL"));
 				
-//				String temp = rs.getString("JOB_PART_TIME_LIST");
-//				if(temp != null) {
-//					String[] people = rs.getString("JOB_PART_TIME_LIST").split(",");
-//					int[] job_people = new int[jp.getJob_num_of_people()];
-//					for(int index=0; index<people.length; index++) {
-//						job_people[index] = Integer.valueOf(people[index]);
-//					}
-//					jp.setJob_people(job_people);
-//				} else {
-//					jp.setJob_people(null);
-//				}
+				jp.setWorker_count(rs.getInt("WORKER_COUNT"));
+				jp.setMy_state(rs.getString("MY_STATE"));
+				
 			}
 
 		} catch (Exception e) {

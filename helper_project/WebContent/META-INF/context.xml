@@ -32,10 +32,10 @@
 <Resource removeAbandonedOnBorrow="true" removeAbandonedTimeout="10" logAbandoned="true" name="jdbc/oracle"
             auth="Container"
             type="javax.sql.DataSource"
-            username="HELPER_TEST"
-            password="1234"
+            username="HELPER_MASTER"
+            password="hr1234"
             driverClassName="oracle.jdbc.OracleDriver"
-            url="jdbc:oracle:thin:@35.230.89.138:1521:xe"
+            url="jdbc:oracle:thin:@localhost:1521:xe"
             maxTotal="100" maxIdle="30" maxWaitMillis="10000"
             />
 </Context>

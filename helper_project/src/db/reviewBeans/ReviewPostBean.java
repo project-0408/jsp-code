@@ -25,7 +25,9 @@ public class ReviewPostBean {
 	private int review_hits;
 	private int review_score;
 	private String review_detail;
-	private int job_post;
+	private int job_post; 
+	private String job_title;
+	private String job_day;
 	
 	public int getNo() {
 		return no;
@@ -74,5 +76,17 @@ public class ReviewPostBean {
 	}
 	public void setJob_post(int job_post) {
 		this.job_post = job_post;
+	}
+	public String getJob_title() {
+		return job_title;
+	}
+	public String getJob_day() {
+		return job_day;
+	}
+	public void setJob_title(String job_title) {
+		this.job_title = job_title;
+	}
+	public void setJob_day(String job_day) {
+		this.job_day = job_day;
 	}
 }

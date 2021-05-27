@@ -2,7 +2,6 @@
 <%@page import="java.sql.Timestamp"%>
 <%@page import="db.ReviewBoardDAO"%>
 <%@page import="db.reviewBeans.ReviewPostBean"%>
-<%@page import="db.reviewBeans.ReviewBoard"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -20,14 +19,12 @@
 	  <%
 	 	request.setCharacterEncoding("UTF-8");
   		String user_no = (String)session.getAttribute("no");
-  		
-	  	ReviewPostBean rpb = new ReviewPostBean();
 
     	ReviewBoardDAO rbDAO = ReviewBoardDAO.getInstance();
     	
 		int userNo = Integer.valueOf(user_no);
 		
-    	ArrayList<ReviewBoard> mrblist = rbDAO.getMyReviewList(userNo);
+    	ArrayList<ReviewPostBean> mrblist = rbDAO.getMyReviewList(userNo);
 		ArrayList<JobPostSubBean> mjblist = rbDAO.getMyJobList(userNo); 
 	  	
 	  %>
@@ -43,10 +40,10 @@
                     <button type="button" onclick="location.href='mp_write.jsp'">내가 쓴글</button>
                     <br>
                     <button type="button" onclick="location.href='mypage_apply.jsp'">지원현황</button>
-                    <br>
+                   <!--  <br>
                     <button type="button" onclick="location.href='mypage_point.jsp'">마이포인트조회</button>
                     <br>
-                    <button type="button" onclick="location.href='mypageLike.jsp'">스크랩</button>
+                    <button type="button" onclick="location.href='mypageLike.jsp'">스크랩</button> -->
 				</div>
 					<p>&nbsp;&nbsp;</p>
 					<h1>&nbsp;&nbsp;등록한 글 목록</h1>
@@ -78,8 +75,8 @@
 		    			for(int i=0; i<mrblist.size(); i++){
 	   				%>
 						<tr style="height: 50px;">
-							<td><%=mrblist.get(i).getCreatedat() %></td>
-							<td style="width: 500px;"><a href="<%=p_helper_path%>/review_board/review_reading.jsp?rno=<%=mrblist.get(i).getNo()%>"><%=mrblist.get(i).getTitle() %></a></td>
+							<td><%=mrblist.get(i).getCreated_at() %></td>
+							<td style="width: 500px;"><a href="<%=p_helper_path%>/review_board/review_reading.jsp?rno=<%=mrblist.get(i).getNo()%>"><%=mrblist.get(i).getReview_titile() %></a></td>
 						</tr>
 					<%
 	    				}

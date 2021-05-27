@@ -6,8 +6,9 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String job_post_no = request.getParameter("no");
+int user_no = Integer.valueOf((String) request.getParameter("user_no"));
 JobPostDAO jpDAO = JobPostDAO.getInstance();
-JobPostBean jp = jpDAO.getPost(job_post_no);
+JobPostBean jp = jpDAO.getPost(user_no, job_post_no);
 %>
 
 <!-- Date picker를 위한 import -->

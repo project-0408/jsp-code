@@ -13,8 +13,8 @@
         }
         %>
 <%
-	ReviewPostDAO manager = ReviewPostDAO.getInstance();
 	request.setCharacterEncoding("UTF-8");
+	String post_no = request.getParameter("no");
 %>
 <!DOCTYPE html>
 <html>
@@ -27,24 +27,24 @@
   <body>
 	<div class="total">
 	<%@ include file="/header.jsp" %>
-	  <form action="review_writer_ok.jsp" method="post">
+	  <form action="review_writer_ok.jsp?no=<%=post_no %>" method="post">
 	    <h1>후기작성</h1>
 	    <div class="section">
 	      <ul>
 	        <div class="title">
-	          <h3>제목&nbsp;&nbsp;&nbsp;<input type="text" name="title"></h3>
+	          <h3>제목&nbsp;&nbsp;&nbsp;<input type="text" name="review_titile"></h3>
 	        </div>
 	      </ul>
 	      <div class="content">
 	        <h4>후기작성</h4>
 	        <textarea 
 	        	style="overflow: auto; height: 400px" 
-	        	rows="auto" cols="70" name="review"></textarea>
+	        	rows="auto" cols="70" name="review_detail"></textarea>
 	      </div>
 	      <div class="button">
 	        <button type="submit" onclick="">글 올리기</button>
 	        <button type="reset">다시쓰기</button>
-	        <span><button type="button" value="뒤로가기" onclick="location.href='review_list.jsp'">뒤로가기</button></span>
+	        <span><button type="button" value="뒤로가기" onclick="history.back()">뒤로가기</button></span>
 	      </div>
 	    </div>
 	  </form>

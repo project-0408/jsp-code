@@ -42,6 +42,8 @@ public class JobPostBean {
 	private int job_pay;
 	private String job_detail;
 	private String job_people;
+	private int worker_count;
+	private String my_state;
 	
 	public String getTime() {
 		return String.format("%s ~ %s", job_time_start, job_time_end);
@@ -185,5 +187,21 @@ public class JobPostBean {
 
 	public void setJob_people(String job_people) {
 		this.job_people = job_people;
+	}
+
+	public int getWorker_count() {
+		return worker_count;
+	}
+
+	public String getMy_state() {
+		return my_state;
+	}
+
+	public void setWorker_count(int worker_count) {
+		this.worker_count = worker_count;
+	}
+
+	public void setMy_state(String my_state) {
+		this.my_state = my_state;
 	}
 }

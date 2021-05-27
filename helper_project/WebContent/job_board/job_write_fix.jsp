@@ -5,9 +5,10 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String job_post_no = request.getParameter("no");
+int user_no = Integer.valueOf((String) session.getAttribute("no"));
+
 JobPostDAO jpDAO = JobPostDAO.getInstance();
-/* System.out.println("no: "+job_post_no); */
-JobPostBean jp = jpDAO.getPost(job_post_no);
+JobPostBean jp = jpDAO.getPost(user_no, job_post_no);
 
 /* System.out.println(jp.getJob_title());
 System.out.println(jp.getJob_time_start());
@@ -45,7 +46,10 @@ System.out.println(jp.getJob_detail()); */
 				</ul>
 				<ul>
 					<!-- 데이, 타임 입력 -->
-					<jsp:include page="../util/datepicker_fix.jsp?no=<%=job_post_no %>"></jsp:include>
+					<jsp:include page="../util/datepicker_fix.jsp">
+						<jsp:param name="no" value="<%=job_post_no %>" />
+						<jsp:param name="user_no" value="<%=user_no %>" />
+					</jsp:include>
 					
 				</ul>
 			</div>

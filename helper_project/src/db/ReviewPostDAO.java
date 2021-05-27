@@ -28,8 +28,7 @@ public class ReviewPostDAO {
 			pstmt.setInt(1, creator);
 			pstmt.setString(2, title);
 			pstmt.setString(3, review);
-			pstmt.setInt(4, 1);
-//			pstmt.setInt(4, jobPostNo);
+			pstmt.setInt(4, rb.getJob_post());
 			pstmt.executeUpdate();
 			re=1;	
 			

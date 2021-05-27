@@ -101,7 +101,7 @@ function cat1_change(key,sel){
 }
 </script> -->
 
-<select onchange="categoryChange(this)" name = "location_first">
+<select onchange="categoryChange(this)" id = "location_first" name = "location_first">
 	<option selected>지역 선택</option>
 	<option value='서울특별시'>서울특별시</option>
 	<option value='부산광역시'>부산광역시</option>

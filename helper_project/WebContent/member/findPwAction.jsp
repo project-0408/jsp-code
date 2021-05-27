@@ -18,9 +18,6 @@
  
       UserDAO manager = UserDAO.getInstance();
       UserBean c = manager.findPw(id, email);
- 
-      try
-      {
 %>
 <body >
 <center>
