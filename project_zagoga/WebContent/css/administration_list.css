@@ -1,10 +1,12 @@
 #container {
+	margin-top:200px;
 	width: 960px;
 	margin: 0 auto;
 }
 
 #container #input-form {
-	text-align: center;
+	float:left;
+	width:960px;
 }
 
 #user-table {
@@ -22,7 +24,7 @@
 }
 
 #user-table>thead>tr {
-	background-color: #333;
+	background-color: #8b4513;
 	color: #fff;
 }
 

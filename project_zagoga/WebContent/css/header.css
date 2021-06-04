@@ -1,8 +1,26 @@
+@charset "EUC-KR";
+
+@font-face {
+	font-family: 'twaysky';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'twaysky';
+}
 header {
-	height:400px;
-	background-image: url(../img/header_photo.png);
+	height:600px;
+	background-image: url(../img/header.png);
 	background-size:cover;
 	background-repeat: no-repeat;
+	color:#fff;
+	padding:50px;
 }
 
 .navbox {
@@ -53,4 +71,7 @@ header {
 
 .dropdown:hover .dropbtn {
 	background-color: #ce671e;
+}
+.space{
+	height:55px;
 }

@@ -12,7 +12,7 @@ String path= request.getContextPath();
 </head>
 <body>
 <header>
-
+	<h2>Zagoga</h2>
 </header>
     <nav>
       <div class="navbox">
@@ -42,5 +42,7 @@ String path= request.getContextPath();
         </div>
       </div>
     </nav>
+    <!-- 공간 비우기용-->
+    <div class = "space"></div>
 </body>
 </html>
