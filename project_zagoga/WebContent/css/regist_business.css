@@ -2,6 +2,10 @@
 /* input:focus { outline: none; background: rgba(184, 203 , 159, 0.3); border-radius: 2px;} */
 /* input:focus { outline: 2px solid rgba(255, 196 , 56, 0.5); } */
 input:invalid { color: red; }
+form{
+	width:600px;
+	margin:0 auto;
+}
 
 .inputHead { width: 600px; }
 .inputHead input {

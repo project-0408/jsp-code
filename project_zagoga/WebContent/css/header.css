@@ -8,13 +8,15 @@
 	font-weight: normal;
 	font-style: normal;
 }
-* {
-	margin: 0;
-	padding: 0;
+nav{
 	box-sizing: border-box;
 	font-family: 'twaysky';
 }
+
 header {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'twaysky';
 	height:600px;
 	background-image: url(../img/header.png);
 	background-size:cover;
@@ -24,12 +26,12 @@ header {
 }
 
 .navbox {
-	background-color: #8b4513;
+	background-color: #000;
 	float: right;
 }
 
 .dropbtn {
-	background-color: #8b4513;
+	background-color: #000;
 	color: white;
 	padding: 16px 30px;
 	font-size: 16px;
@@ -70,8 +72,8 @@ header {
 }
 
 .dropdown:hover .dropbtn {
-	background-color: #ce671e;
+	background-color: #84898a;
 }
 .space{
-	height:55px;
+	height:200px;
 }

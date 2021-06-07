@@ -1,12 +1,15 @@
 .mainbox{
-	border: 1px solid black;
 	margin:0 auto;
 	padding:10px;
 }
 .imagebox{
-	width: 1000px;	
-	border: 1px solid black;
 }
-table tr td:last-child{
-	width:500px;
+.mainbox table tr td{
+	padding:30px;
+}
+
+
+.table{
+	border:1px solid black;
+	margin: 0 auto;
 }

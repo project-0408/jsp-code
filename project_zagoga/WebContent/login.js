@@ -13,6 +13,5 @@ function blankCheck() {
     else {
         isFillOut = true;
     }
-
     return isFillOut;
 }

@@ -1,34 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+	 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ì‚¬ì—…ìž íšŒì›ê°€ìž…</title>
+    <title>»ç¾÷ÀÚ È¸¿ø°¡ÀÔ</title>
     <link href="css/regist_business.css" media="all" rel="Stylesheet" type="text/css" />
 </head>
 <body>
-    <form action="#" method="POST" onsubmit="return blankCheck();">
+<%@ include file="/header.jsp" %>
+	<form action="#" method="POST" onsubmit="return blankCheck();">
         <div class="inputHead">
-            <h2>ì‚¬ì—…ìž ì¸ì¦</h2>
+            <h2>»ç¾÷ÀÚ ÀÎÁõ</h2>
             <input type="text" class="businessNum" maxlength="3" pattern="[0-9]+"> - <input type="text" class="businessNum" maxlength="2" pattern="[0-9]+"> - <input type="text" class="businessNum" maxlength="5" pattern="[0-9]+">
-            <button type="button" id="checkBusinessNumberBtn" onclick="checkBusinessNumber();">ì¸ì¦í•˜ê¸°</button>
+            <button type="button" id="checkBusinessNumberBtn" onclick="checkBusinessNumber();">ÀÎÁõÇÏ±â</button>
         </div>
-        <h2>ì •ë³´ìž…ë ¥</h2>
+        <h2>Á¤º¸ÀÔ·Â</h2>
         <table aria-describedby="registBusinessTable">
             <th id="registBusinessTable"></th>
-            <tr><td class="input"><input type="text" id="brand" name="brand" placeholder="ìƒí˜¸ëª…" disabled></td></tr>
-            <tr><td class="input"><input type="text" id="owner" name="owner" placeholder="ëŒ€í‘œìžëª…" disabled></td></tr>
-            <tr><td class="input"><input type="text" id="userID" name="userID" placeholder="ì•„ì´ë””" disabled></td></tr>
+            <tr><td class="input"><input type="text" id="brand" name="brand" placeholder="»óÈ£¸í" disabled></td></tr>
+            <tr><td class="input"><input type="text" id="owner" name="owner" placeholder="´ëÇ¥ÀÚ¸í" disabled></td></tr>
+            <tr><td class="input"><input type="text" id="userID" name="userID" placeholder="¾ÆÀÌµð" disabled></td></tr>
             <tr>
-                <td class="inputPW"><input type="password" id="userPW" name="userPW" placeholder="ë¹„ë°€ë²ˆí˜¸" disabled></td>
+                <td class="inputPW"><input type="password" id="userPW" name="userPW" placeholder="ºñ¹Ð¹øÈ£" disabled></td>
                 <td class="inputPWShow"><input type="image" id="userPWShow" onclick="pwShowToggle(); return false;" src="img/visibility.png" alt="show password" disabled/></td>
             </tr>
-            <tr><td class="inputPW"><input type="password" id="userPWCheck" name="userPWCheck" placeholder="ë¹„ë°€ë²ˆí˜¸ ìž¬ìž…ë ¥" disabled></td></tr>
+            <tr><td class="inputPW"><input type="password" id="userPWCheck" name="userPWCheck" placeholder="ºñ¹Ð¹øÈ£ ÀçÀÔ·Â" disabled></td></tr>
             <tr>
                 <td>
                     <select class="phoneNum" disabled>
-                        <option>ì„ íƒ</option>
+                        <option>¼±ÅÃ</option>
                         <option>010</option>
                     </select>
                     - <input type="text" class="phoneNum" maxlength="4" disabled>
@@ -37,26 +42,24 @@
             </tr>
             <tr>
                 <td >
-                    <input type="text" id="emailID" name="emailID" placeholder="ì´ë©”ì¼" disabled>
+                    <input type="text" id="emailID" name="emailID" placeholder="ÀÌ¸ÞÀÏ" disabled>
                     @ <select id="emailAddr" name="emailAddr" disabled>
-                        <option>ì„ íƒ</option>
+                        <option>¼±ÅÃ</option>
                         <option>naver.com</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td class="inputButtonLayout">
-                    <input class="inputButton" id="registerButton" type="submit" value="íšŒì›ê°€ìž…" disabled>
-                    <input class="inputButton" type="button" value="ì·¨ì†Œ">
+                    <input class="inputButton" id="registerButton" type="submit" value="È¸¿ø°¡ÀÔ" disabled>
+                    <input class="inputButton" type="button" value="Ãë¼Ò">
                 </td>
             </tr>
         </table>
     </form>
-
+<%@ include file="/footer.jsp" %>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="regist_business.js" type="text/javascript"></script>
     <script src="pwShowToggle.js" type="text/javascript"></script>
 </body>
-</html> 
-
-
+</html>

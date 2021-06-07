@@ -1,3 +1,7 @@
+#mainbox{
+	width:400px;
+	margin:0 auto;
+}
 table { width: 350px; }
 
 .inputHead {
@@ -15,7 +19,6 @@ table { width: 350px; }
 
 /* .inputID :nth-child(1)::placeholder, .inputPW :nth-child(1)::placeholder { color: rgb(196, 196, 196); } */
 ::placeholder { color: rgb(196, 196, 196); }
-
 .inputPWShow { text-align: center; }
 .inputPWShow :nth-child(1) { height: 2em; }
 

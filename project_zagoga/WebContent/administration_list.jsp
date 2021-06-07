@@ -9,15 +9,14 @@
 <link rel="stylesheet" type="text/css" href="css/administration_list.css" />
 </head>
 <body>
-	<%
-	Cookie cookie = new Cookie("no","1");
-	cookie.setMaxAge(60*60*24);
-	response.addCookie(cookie);
-	%>
+	<%@ include file="/header.jsp" %>
 	<div id="container">
 		<div id="input-form">
+		<hr>
 			<h2>사업 등록 현황</h2>
-			사업자번호 :<input type="text" id="keyword">
+			<hr>
+			<p></p>
+		사업자번호 :<input type="text" id="keyword">
 		</div>
 		<table id="user-table">
 			<thead>
@@ -27,7 +26,6 @@
 					<th>사업자 번호</th>
 					<th>등록 일자</th>
 					<th>승인 여부</th>
-					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -91,5 +89,6 @@
 							})
 		</script>
 	</div>
+		<%@ include file="/footer.jsp" %>
 </body>
 </html>
