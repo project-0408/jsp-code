@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/administration_list.css" />
@@ -13,70 +13,70 @@
 	<div id="container">
 		<div id="input-form">
 		<hr>
-			<h2>»ç¾÷ µî·Ï ÇöÈ²</h2>
+			<h2>ì‚¬ì—… ë“±ë¡ í˜„í™©</h2>
 			<hr>
 			<p></p>
-		»ç¾÷ÀÚ¹øÈ£ :<input type="text" id="keyword">
+		ì‚¬ì—…ìžë²ˆí˜¸ :<input type="text" id="keyword">
 		</div>
 		<table id="user-table">
 			<thead>
 				<tr>
-					<th>¹øÈ£</th>
-					<th>ÀÌ¸§</th>
-					<th>»ç¾÷ÀÚ ¹øÈ£</th>
-					<th>µî·Ï ÀÏÀÚ</th>
-					<th>½ÂÀÎ ¿©ºÎ</th>
+					<th>ì‚¬ì—…ìž ë²ˆí˜¸</th>
+					<th>ì´ë¦„</th>
+					<th>ë“±ë¡ ì¼ìž</th>
+					<th>ìŠ¹ì¸ ì—¬ë¶€</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>123-456-78910</td>
-					<td>È«±æµ¿</td>
+					<td>í™ê¸¸ë™</td>
 					<td>2021-06-02</td>
-					<td>½ÂÀÎ</td>
-					<td><button onclick="location.href='administration_reading.jsp'">»ó¼¼ ³»¿ë È®ÀÎ</button></td>
+					<td>ìŠ¹ì¸</td>
+					<td><button onclick="location.href='administration_reading.jsp'">ìƒì„¸ ë‚´ìš© í™•ì¸</button></td>
 				</tr>
 				<tr>
 					<td>223-456-78910</td>
-					<td>±è±æµ¿</td>
+					<td>ê¹€ê¸¸ë™</td>
 					<td>2021-06-02</td>
-					<td>½ÂÀÎ</td>
-					<td><button>»ó¼¼ ³»¿ë È®ÀÎ</button></td>
+					<td>ìŠ¹ì¸</td>
+					<td><button>ìƒì„¸ ë‚´ìš© í™•ì¸</button></td>
 				</tr>
 				<tr>
 					<td>323-456-78910</td>
-					<td>ÀÌ±æµ¿</td>
+					<td>ì´ê¸¸ë™</td>
 					<td>2021-06-02</td>
-					<td>½ÂÀÎ</td>
-					<td><button>»ó¼¼ ³»¿ë È®ÀÎ</button></td>
+					<td>ìŠ¹ì¸</td>
+					<td><button>ìƒì„¸ ë‚´ìš© í™•ì¸</button></td>
 				</tr>
 				<tr>
 					<td>423-456-78910</td>
-					<td>»ç±æµ¿</td>
+					<td>ì‚¬ê¸¸ë™</td>
 					<td>2021-06-02</td>
-					<td>½ÂÀÎ</td>
-					<td><button>»ó¼¼ ³»¿ë È®ÀÎ</button></td>
+					<td>ìŠ¹ì¸</td>
+					<td><button>ìƒì„¸ ë‚´ìš© í™•ì¸</button></td>
 				</tr>
 				<tr>
 					<td>523-456-78910</td>
-					<td>¿À±æµ¿</td>
+					<td>ì˜¤ê¸¸ë™</td>
 					<td>2021-06-02</td>
-					<td>½ÂÀÎ</td>
-					<td><button>»ó¼¼ ³»¿ë È®ÀÎ</button></td>
+					<td>ìŠ¹ì¸</td>
+					<td><button>ìƒì„¸ ë‚´ìš© í™•ì¸</button></td>
 				</tr>
 				<tr>
 					<td>623-456-78910</td>
-					<td>È«±æµ¿</td>
+					<td>í™ê¸¸ë™</td>
 					<td>2021-06-02</td>
-					<td>°ÅÀý</td>
-					<td><button>»ó¼¼ ³»¿ë È®ÀÎ</button></td>
+					<td>ê±°ì ˆ</td>
+					<td><button>ìƒì„¸ ë‚´ìš© í™•ì¸</button></td>
 				</tr>
 				<tr>
 					<td>723-456-78910</td>
-					<td>È«±æµ¿</td>
+					<td>í™ê¸¸ë™</td>
 					<td>2021-06-02</td>
-					<td>½ÂÀÎ</td>
-					<td><button>»ó¼¼ ³»¿ë È®ÀÎ</button></td>
+					<td>ìŠ¹ì¸</td>
+					<td><button>ìƒì„¸ ë‚´ìš© í™•ì¸</button></td>
 				</tr>
 			</tbody>
 		</table>

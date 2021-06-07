@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <%
 String path= request.getContextPath();
@@ -42,7 +42,7 @@ String path= request.getContextPath();
         </div>
       </div>
     </nav>
-    <!-- 공간 비우기용-->
+    <!-- 怨듦컙 鍮꾩슦湲곗슜-->
     <div class = "space"></div>
 </body>
 </html>

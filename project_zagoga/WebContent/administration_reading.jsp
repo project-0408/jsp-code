@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="css/administration_reading.css" />
@@ -12,33 +12,35 @@
 	<%@ include file="/header.jsp"%>
 	<div class="mainbox">
 		<div class="imgbox">
-			<img scr="img/busan.jpg">
+			<img src="img/busan.jpg">
 		</div>
 		<div class = "table">
+		<h2>ì‚¬ì—…ìž ì •ë³´</h2>
 			<table>
 				<tr>
-					<td>»ç¾÷ÀÚ ÀÌ¸§</td>
+					<td>ì‚¬ì—…ìž ì´ë¦„: </td>
+					<td></td>
+					<hr>
+				</tr>
+				<tr>
+					<td>ì‚¬ì—…ìž ë“±ë¡ë²ˆí˜¸ : </td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>»ç¾÷ÀÚ µî·Ï¹øÈ£</td>
+					<td>ì‚¬ì—…ìž ì „í™”ë²ˆí˜¸ : </td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>»ç¾÷ÀÚ ÀüÈ­¹øÈ£</td>
+					<td>ì‚¬ì—… ìœ„ì¹˜ : </td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>»ç¾÷ À§Ä¡</td>
+					<td>ê¸°íƒ€ íŠ¹ì´ ì‚¬í•­ : </td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>±âÅ¸ Æ¯ÀÌ »çÇ×</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><button>½ÂÀÎ</button></td>
-					<td><button>½ÂÀÎÇØÁ¦</button></td>
+					<td><button>ìŠ¹ì¸</button></td>
+					<td><button>ìŠ¹ì¸í•´ì œ</button></td>
 				</tr>
 			</table>
 		</div>

@@ -1,79 +1,62 @@
 <%@page import="java.sql.Timestamp"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
- <%
-	String order_id="",customer_name="",tel="", etc="";
-	int customer_number =0,total_stay = 0, rate = 0;
-	
-	Timestamp check_in =null, check_out=null;
- %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String order_id = "", customer_name = "", tel = "", etc = "";
+int customer_number = 0, total_stay = 0, rate = 0;
+
+Timestamp check_in = null, check_out = null;
+%>
 <html lang="en">
 <head>
-    <meta charset="euc-kr">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    	section table{
-    		border:1px solid;
-    	}
-    </style>
+<meta charset="euc-kr">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/reservation_confrim.css" />
+<title>Document</title>
 </head>
 <body>
-    <header>
-    </header>
-      <nav>
-      </nav>
-   <section>
-       <center>
-        <table>
-            <form>   
-                <tr>
-                    <td width="130">¡÷πÆπ¯»£: </td>
-                    <td><%=order_id%></td>
-                </tr>
-                <tr>
-                    <td width="130">¿€º∫¿⁄: </td>
-                    <td><%= customer_name %></td>
-                    <td width="130">ø¨∂Ù√≥: </td>
-                    <td><%= tel %></td>
-                </tr>
-                <tr>
-                   <td width="130">¿Œø¯: </td>
-                   <td>
-                    	<%=customer_number %>
-                   </td>
-                   <td width="130">√º≈©¿Œ: </td>
-                   <td><%=check_in %></td>
-                </tr>
-                <tr>
-                    <td width="130">√º≈© æ∆øÙ: </td>
-                    <td>
-                    	<%=check_out  %>
-                    </td>
-                    <td width="130">√— º˜π⁄¿œ: </td>
-                    <td>π⁄ / ¿œ</td>
-                </tr>
-                <tr>
-                    <td width="130">∞°∞›: </td>
-                    <td><%=rate %></td>
-                </tr>
-                <tr>
-                    <td width="130">±‚≈∏ ªÁ«◊: </td>
-   		            <td><%= etc %></td>
-                </tr>
-                <tr>
-                    <td >
-                        <input type="submit" value="¡¯«‡«œ±‚" >
-                        <input type="button" value="√Îº“"  onclick="location.href=''">
-                    </td>
-                </tr>
-            </form>
-        </table>
-        </center>
-    </section>
-      <footer>
-     
-    </footer>
+	<%@ include file="/header.jsp"%>
+	<form>
+		<div id = "mainbox">
+		<table>
+			<tr>
+				<td width="130">Ï£ºÎ¨∏Î≤àÌò∏:</td>
+				<td><%=order_id%></td>
+			</tr>
+			<tr>
+				<td width="130">ÏûëÏÑ±Ïûê:</td>
+				<td><%=customer_name%></td>
+				<td width="130">Ïó∞ÎùΩÏ≤ò:</td>
+				<td><%=tel%></td>
+			</tr>
+			<tr>
+				<td width="130">Ïù∏Ïõê:</td>
+				<td><%=customer_number%></td>
+				<td width="130">Ï≤¥ÌÅ¨Ïù∏:</td>
+				<td><%=check_in%></td>
+			</tr>
+			<tr>
+				<td width="130">Ï≤¥ÌÅ¨ ÏïÑÏõÉ:</td>
+				<td><%=check_out%></td>
+				<td width="130">Ï¥ù ÏàôÎ∞ïÏùº:</td>
+				<td>Î∞ï / Ïùº</td>
+			</tr>
+			<tr>
+				<td width="130">Í∞ÄÍ≤©:</td>
+				<td><%=rate%></td>
+			</tr>
+			<tr>
+				<td width="130">Í∏∞ÌÉÄ ÏÇ¨Ìï≠:</td>
+				<td><%=etc%></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="ÏßÑÌñâÌïòÍ∏∞"> <input
+					type="button" value="Ï∑®ÏÜå" onclick="location.href=''"></td>
+			</tr>
+		</table>
+		</div>
+	</form>
+	<%@ include file="/footer.jsp"%>
 </body>
 </html>

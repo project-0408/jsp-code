@@ -1,7 +1,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 	String order_id="",customer_name="",tel="";
 	int customer_number =0,total_stay = 0, rate = 0;
@@ -12,32 +12,32 @@
 %>
 <html lang="en">
 <head>
-    <meta charset="euc-kr">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/costomer_list.css" />
-    <title>½ÂÀÎ/°ÅºÎ</title>
+    <title>ìŠ¹ì¸/ê±°ë¶€</title>
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
   	<div id = "mainbox">
-      <h1>½ÂÀÎ °ÅºÎ ÆäÀÌÁö</h1>
+      <h1>ìŠ¹ì¸ ê±°ë¶€ íŽ˜ì´ì§€</h1>
   <section>
         <table>
                 <tr>
-                    <th>ÁÖ¹®¹øÈ£</th>
-                    <th>ÀÌ¸§</th>
-                    <th>¿¬¶ôÃ³</th>
-                    <th>ÀÎ¿ø</th>
-                    <th>Ã¼Å©ÀÎ</th>
-                    <th>Ã¼Å©¾Æ¿ô</th>
-                    <th>ÃÑ ¼÷¹ÚÀÏ¼ö</th>
-                    <th>°¡°Ý</th>
-                    <th>ÁøÇà»óÅÂ</th>
+                    <th>ì£¼ë¬¸ë²ˆí˜¸</th>
+                    <th>ì´ë¦„</th>
+                    <th>ì—°ë½ì²˜</th>
+                    <th>ì¸ì›</th>
+                    <th>ì²´í¬ì¸</th>
+                    <th>ì²´í¬ì•„ì›ƒ</th>
+                    <th>ì´ ìˆ™ë°•ì¼ìˆ˜</th>
+                    <th>ê°€ê²©</th>
+                    <th>ì§„í–‰ìƒíƒœ</th>
                 </tr>
  <%
 				for(int i=0 ; i<10 ; i++){ 
-					//DB¿¡ ÀÖ´Â list¸¦ ¹Þ¾Æ¼­  °ªµé ³ª¿­
+					//DBì— ìžˆëŠ” listë¥¼ ë°›ì•„ì„œ  ê°’ë“¤ ë‚˜ì—´
 %> 
 				<tr>
 					<td>
@@ -65,8 +65,8 @@
 					<%=rate %>
 					</td>
 					<td>
-						<input type="button" value="½ÂÀÎ"> &nbsp; / &nbsp;
-						<input type="button" value="°ÅºÎ">
+						<input type="button" value="ìŠ¹ì¸"> &nbsp; / &nbsp;
+						<input type="button" value="ê±°ë¶€">
 					</td>
 				</tr>
 	<%

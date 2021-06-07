@@ -12,11 +12,12 @@
 	<script type="text/javascript" src="script.js" charset="utf-8"></script>
   </head>
   <body>
+  <%@ include file="/header.jsp" %>
 	<div class="total">
-	  <form action="write_ok.jsp" method="post">
+	  <form>
 	    <h1>게스트 하우스 소개</h1>
 	    <div class="section">
-	      <ul>
+	    
 		    <div class="title">
 		          <h3>제목&nbsp;&nbsp;&nbsp;<input type="text" name="write_title" width="100"></h3>
 		    </div>
@@ -24,16 +25,8 @@
 			    <h4>이미지 업로드&nbsp;&nbsp;&nbsp;</h4>
 			    <input type="file" name="write_image" size="10">
 	        </div>
-	      </ul>
-	      
-	      
-	      
-	      
 				<div class="detail">
-					<ul>
 						<h3>상세 내용</h3>
-					</ul>
-					<ul>
 						<h4>
 							카테고리 &nbsp;&nbsp;&nbsp; 
 							<select name="category" id="category">
@@ -41,8 +34,6 @@
 								<option value='2'>다인실</option>
 							</select>
 						</h4>
-					</ul>
-					<ul>
 						<h4>
 							<!-- 주소 입력 -->
 							<script type="text/javascript" src="../util/juso2.js" ></script>
@@ -55,13 +46,7 @@
 							<input type="hidden" name="location_second_name" />
 							
 						</h4>
-					</ul>
 				</div>
-					
-	      
-	      
-	      
-	      
 	    <div class="content">
 	        <h4>소개</h4>
 	        <textarea 
@@ -77,5 +62,6 @@
 	  </form>
 	  <div class="clear"></div>
 	</div>
+	 <%@ include file="/footer.jsp" %>
   </body>
 </html>

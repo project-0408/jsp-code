@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="./css/footer.css">
 <body>
@@ -12,7 +12,7 @@
  <%-- <div class="f_img"><img src="/images/footer.png" id="f_img"></div> --%>
     <div>
       Green.co <br>
-      Addr. ºÎ»ê½Ã °¡³ª´Ùµ¿ °¡³ª´Ù¶ó±¸ 2·Î 1234 <br>
+      Addr. ë¶€ì‚°ì‹œ ê°€ë‚˜ë‹¤ë™ ê°€ë‚˜ë‹¤ë¼êµ¬ 2ë¡œ 1234 <br>
       010 - 123 -1234 <br>
       COPYRIGHT 2019. TAMO. ALL RIGHT RESERVED.
     </div>

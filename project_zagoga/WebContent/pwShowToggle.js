@@ -6,7 +6,7 @@ function pwShowToggle() {
             pwList[i].type = "text";
         }
         // $("#userPW").attr("type", "text");
-        $("#userPWShow").attr("src", "images/visibility_close.png");
+        $("#userPWShow").attr("src", "img/visibility_close.png");
     }
     else if (type == "text") {
         var pwList = $(".inputPW").children("input");
@@ -14,7 +14,7 @@ function pwShowToggle() {
             pwList[i].type = "password";
         }
         // $("#userPW").attr("type", "password");
-        $("#userPWShow").attr("src", "images/visibility.png");
+        $("#userPWShow").attr("src", "img/visibility.png");
     }
 }
 
