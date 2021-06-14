@@ -22,10 +22,6 @@
 				<td><input type="text" value="홍길동"></td>
 			</tr>
 			<tr>
-				<td>상호명</td>
-				<td><input type="text" value="부산게스트하우스"></td>
-			</tr>
-			<tr>
 				<td>전화 번호</td>
 				<td><input type="text" value="010-1234-5678"></td>
 			</tr>
@@ -48,7 +44,6 @@
 		</table>
 		<div id = "button">
 			<button>수정완료</button>
-			<button>회원탈퇴</button>
 			<button>취소</button>
 		</div>
 	</div>
